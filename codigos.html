@@ -1,0 +1,37 @@
+php artisan make:livewire Admin\ShowProducts
+php artisan make:model Category -ms
+
+/*creando componete categorias*/
+php artisan make:livewire Admin\ShowCategories
+php artisan make:livewire Admin\CreateCategories
+
+php artisan make:livewire Admin\EditCategories
+
+php artisan migrate:fresh --seed
+
+
+hp artisan vendor:publish --tag=jetstream-views
+
+
+Para Importar de excel
+======================
+https://docs.laravel-excel.com/3.1/imports/
+
+composer require maatwebsite/excel
+composer require psr/simple-cache:^2.0 maatwebsite/excel
+
+php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" --tag=config
+
+php artisan make:import CategoriesImport --model=Category
+
+https://www.youtube.com/watch?v=peB01zLSfHY
+https://www.youtube.com/watch?v=hFagNiHNCeU
+
+
+php artisan make:export CategoriesExport --model=Category
+
+
+DOM PDF de laravel-excel
+==========================
+
+https://github.com/barryvdh/laravel-dompdf
