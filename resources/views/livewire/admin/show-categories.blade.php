@@ -85,7 +85,8 @@
                                         <div class="flex-shrink-0 w-10 h-10">
                                             @if ($category->image)
                                                 <img class="object-cover w-10 h-10 rounded-full"
-                                                    src="{{ Storage::url($category->image) }}" alt="">
+                                                src="{{ Storage::disk("s3")->url($category->image) }}" alt="">
+                                                    {{-- src="{{ Storage::url($category->image) }}" alt=""> --}}
                                             @else
                                                 <img class="object-cover w-10 h-10 rounded-full"
                                                     src="https://images.pexels.com/photos/4883800/pexels-photo-4883800.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">

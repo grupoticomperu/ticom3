@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 
 class CreateCategories extends Component
 {
@@ -40,8 +41,10 @@ class CreateCategories extends Component
 
     public function save(){
         $this->validate();
+        //$url = Storage::disk('s3')->put('public/posts', $request->file('file'), 'public');
         if($this->image){
-            $image = $this->image->store('categories', 'public');
+            //$image = $this->image->store('categories', 'public');
+            $image = Storage::disk('s3')->put('categories', $this->image, 'public');
         }else{
             $image = 'categories/default.jpg';
         }

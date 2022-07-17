@@ -151,8 +151,9 @@
 
             @if($image)
                 <img class="mb-4" src="{{$image->temporaryUrl()}}" alt="">
+                src="{{ Storage::disk("s3")->url($category->image) }}" alt="">
             @else
-                <img src="{{Storage::url($category->image)}}" alt="">     
+                <img src="{{ Storage::disk("s3")->url($category->image) }}" alt="">    
             @endif
 
 
