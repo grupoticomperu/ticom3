@@ -45,3 +45,65 @@ composer require league/flysystem-aws-s3-v3 "^3.0"
 
 php artisan optimize
 php artisan cache:clear 
+
+
+para mostrar categorias en la pagina
+======================================
+
+php artisan make:livewire ShowCategories
+
+php artisan make:model Producto -mfs
+
+php artisan make:model Company -mfs
+
+ctreamos la tabla muchos a muchos entre categorias y companias
+====================================================
+php artisan make:migration create_category_company_table
+php artisan make:migration create_category_user_table
+
+
+php artisan make:model Departamento -m
+php artisan make:model Provincia -m
+php artisan make:model Distrito -m
+
+
+
+instalando laravel permission
+======================
+composer require spatie/laravel-permission
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+php artisan config:clear
+php artisan migrate
+
+implementar en el modelo user  
+==========================
+
+use Spatie\Permission\Traits\HasRoles;
+use HasRoles;
+
+
+copiando esto en app/Http/Kernel.php file.
+============================
+
+protected $routeMiddleware = [
+    // ...
+    'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+    'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+    'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+];
+
+creo un rol 
+===============
+$role = Role::create(['name' => 'admin']);
+php artisan migrate:fresh --seed
+
+
+agrego en role service --provider
+===============================
+
+'rode:admin'
+
+
+para instalar traducciones 
+==============================
+https://laravel-lang.com/installation/

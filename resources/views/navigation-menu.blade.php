@@ -7,9 +7,9 @@ $nav_links = [
         'active' => request()->routeIs('home')
     ],
     [
-        'name' => 'Empresas',
-        'route' => route('home'),
-        'active' => request()->routeIs('home')
+        'name' => 'Categorias',
+        'route' => route('showcategories'),
+        'active' => request()->routeIs('showcategories')
     ],
     [
         'name' => 'Productos',
@@ -168,9 +168,32 @@ $nav_links = [
                             {{ __('Manage Account') }}
                         </div>
 
-                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                            {{ __('Profile') }}
+                        @role('admin')
+                            <x-jet-dropdown-link href="{{ route('admin.categories.index') }}">
+                                {{ __('Adminsitrador') }}
+                            </x-jet-dropdown-link>
+                        @endrole
+
+                        <x-jet-dropdown-link href="{{ route('showproductos') }}">
+                            {{ __('Mi Productos') }}
                         </x-jet-dropdown-link>
+
+                        
+                        <x-jet-dropdown-link href="{{ route('miempresa') }}">
+                            {{ __('Mi Empresa') }}
+                        </x-jet-dropdown-link>
+
+                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                            {{ __('Mis Datos') }}
+                        </x-jet-dropdown-link>
+
+                        <x-jet-dropdown-link href="{{ route('miscategorias') }}">
+                            {{ __('Mis Categorias1') }}
+                        </x-jet-dropdown-link>
+
+                        <x-jet-dropdown-link href="{{ route('miscategoriasa', Auth::user()) }}">
+                            {{ __('Mis Categorias2') }}
+                        </x-jet-dropdown-link> 
 
                         @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                             <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
@@ -192,8 +215,10 @@ $nav_links = [
                     </x-slot>
                 </x-jet-dropdown>
             @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Inicia</a>
-                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Regístrate</a>
+            
+                <x-jet-danger-button class="px-2 py-1"> <a href="{{ route('login') }}" class="text-sm underline text-white-700">Ingresar</a> </x-jet-danger-button>
+                
+                <x-jet-danger-button class="px-2 py-1"> <a href="{{ route('register') }}" class="text-sm underline text-white-700">Regístrate</a> </x-jet-danger-button>
             @endauth
 
             </div>
@@ -305,7 +330,7 @@ $nav_links = [
     @else
         <div class="border-t border-gray-200">
             <x-jet-responsive-nav-link href="{{  route('login') }}" :active="request()->routeIs('login')">
-               Inicia
+               Ingresar
             </x-jet-responsive-nav-link>
 
             <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">

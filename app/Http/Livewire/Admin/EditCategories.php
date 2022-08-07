@@ -73,8 +73,8 @@ class EditCategories extends Component
             $this->category->image = $this->image->store('categories', 'public');
         }
 
-       /*  $this->category->save();
- */
+       /*  $this->category->save();*/
+       
         $this->category->update([
             'name' => $this->name,
             'slug' => $this->slug,

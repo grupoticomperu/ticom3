@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -17,17 +19,46 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'razonsocial',
+        'slug',
+        'description'
     ];
+
+
+    public function getRouteKeyName()
+    {
+    	return 'slug';
+    }
+
+
+    public function setRazonsocialAttribute($razonsocial)
+    {
+        $this->attributes['razonsocial'] = $razonsocial;
+        $this->attributes['slug'] = str::slug($razonsocial);
+
+    }
+
+
+
+
+
+
+    public function syncCategories($categories)
+    {
+
+        $categoryIds = collect($categories)->map(function($category){
+            return Category::find($category) ? $category : Category::create(['name'=>$category])->id;
+        });
+
+        return $this->categories()->sync($categoryIds);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -58,4 +89,25 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+
+
+    //Relacion uno a muchos
+    public function products(){
+        return $this->hasMany('App\Models\Product');
+    }
+
+
+    //Relacion muchos a muchos
+    public function categories(){
+        return $this->belongsToMany(Category::class);
+    }
+
+
+
+
+
+
+
 }

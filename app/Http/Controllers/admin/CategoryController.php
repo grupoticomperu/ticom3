@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
         $file = $request->file('import_file');
         Excel::import(new CategoriesImport, $file);
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.products.index');
     }
 
 
