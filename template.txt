@@ -1,0 +1,55 @@
+<x-app-layout>
+
+    <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            {{ __('Datos de mi Empresa') }}
+        </h2>
+    </x-slot>
+
+
+    <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        
+    ------------------------------------------
+
+
+     <div>
+    
+	<div class="py-1">
+          <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">  
+  
+                    <div class="px-4 py-4 mb-2 ">
+                        <x-jet-label value="Razón Social" />
+                        <x-jet-input type="text" 
+                                    class="w-full capitalize"
+                                    wire:model="razonsocial"
+                                    placeholder="Ingrese la Razón Social de tu Empresa " />
+                    	<x-jet-input-error for="razonsocial" /> 
+                    
+                     </div>    
+
+
+
+             	     <x-jet-section-border />
+
+
+             	     <x-jet-danger-button  wire:click="save" wire:loading.attr="disabled" wire:target="save" class="mb-2 ml-2 disabled:opacity-25">
+                        Editar mi empresa
+              	     </x-jet-danger-button>
+
+
+               </div>
+             </div>
+          </div>
+
+
+
+       </div>
+
+
+    ------------------------------------------    
+
+    </div>
+
+
+</x-app-layout>

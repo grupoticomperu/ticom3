@@ -39,7 +39,7 @@ class MiEmpresa extends Component
         $this->slug = Str::slug($value);
     }
 
-    public function save(Request $request){
+    public function save(){
 
      /*  $this->rules['category.slug'] = 'required|unique:categories,slug,'.$this->category->id;  */
 
@@ -54,7 +54,7 @@ class MiEmpresa extends Component
         //return $this->empresa;
        
 
-        dd($this->categoriess);
+       // dd($this->categoriess);
 
 
         $this->empresa->update([
@@ -65,7 +65,7 @@ class MiEmpresa extends Component
         ]); 
 
         //$this->empresa->syncCategories($request->get('categoriess'));
-        $this->empresa->categories()->attach($this->categoriess);
+       // $this->empresa->categories()->attach($this->categoriess);
 
     
 

@@ -3,6 +3,11 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Livewire\CreateProducts;
+use App\Http\Livewire\EditProducts;
+use App\Http\Livewire\EditProductsd;
+use App\Http\Controllers\PhotoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,17 +26,38 @@ Route::get('categorias', [CategoryController ::class, 'show'])->name('showcatego
 //Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('categorias/{category}', [CategoryController::class, 'showepc'])->name('showepc');
 Route::get('empresa/{busine}', [CategoryController::class, 'showempresa'])->name('showempresa'); 
-Route::get('misproductos', [CategoryController::class, 'showproductos'])->name('showproductos'); 
 
-Route::get('miempresa', [CategoryController::class, 'miempresa'])->middleware('auth')->name('miempresa');
-Route::get('miscategorias', [CategoryController::class, 'miscategorias'])->middleware('auth')->name('miscategorias');
 
-Route::get('miscategorias/{user}', [CategoryController::class, 'edit'])->middleware('auth')->name('miscategoriasa');
-/* Route::get('miscategoriasd/{user}', [CategoryController::class, 'editd'])->middleware('auth')->name('miscategoriasd'); */
 
-Route::put('miempresa/{user}', [CategoryController::class, 'update'])->middleware('auth')->name('miscategoriasupdate');
-/* Route::put('miempresad/{user}', [CategoryController::class, 'updated'])->middleware('auth')->name('miscategoriasupdated'); */
+Route::group([       
+    'prefix' =>'user', 
+    'middleware' => 'auth'], 
+function(){
 
+    
+/* Route::prefix("user")->group(function(){ */
+    
+    Route::get('misproductos', [CategoryController::class, 'showproductos'])->name('showproductos'); 
+    Route::get('miempresa', [CategoryController::class, 'miempresa'])->name('miempresa');
+    Route::get('miscategorias', [CategoryController::class, 'miscategorias'])->name('miscategorias');
+
+    Route::get('miscategorias/{user}', [CategoryController::class, 'edit'])->name('miscategoriasa');
+    /* Route::get('miscategoriasd/{user}', [CategoryController::class, 'editd'])->name('miscategoriasd'); */
+
+    Route::put('miempresa/{user}', [CategoryController::class, 'update'])->name('miscategoriasupdate');
+    /* Route::put('miempresad/{user}', [CategoryController::class, 'updated'])->name('miscategoriasupdated'); */
+
+     Route::get('misproductos/create', CreateProducts::class)->name('products.create'); 
+    // Route::get('misproductos/edit', CreateProducts::class)->name('products.create'); 
+    Route::get('editproducts/{product}', EditProducts::class)->name('products.edit');
+    Route::get('editproductsd/{product}', EditProductsd::class)->name('products.editd');
+
+    /*Route::post('products/{product}/photos', 'PhotoController@store')->name('products.photos.store'); */
+
+    Route::post('products/{product}/photos', [PhotoController::class, 'store'])->name('products.photos.store');   
+    Route::delete('products/{photo}', [PhotoController::class, 'destroy'])->name('products.photos.destroy');
+
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

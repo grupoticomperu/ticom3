@@ -11,14 +11,17 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
 
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 
+       {{--  <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script> --}}
+
+        @stack('css')
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <link rel="icon" href="{{ asset('img/ticom.ico') }}">
 
-        @livewireStyles
+        @livewireStyles    
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
@@ -46,26 +49,8 @@
 
         @stack('modals')
 
-        @livewireScripts
-
-        <script src="https://code.jquery.com/jquery-3.6.0.slim.js" ></script>
-        <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        
-        <script>
-
-            $('.select2').select2({
-              tags:true
-            });
-      
-
-        CKEDITOR.replace('editor');
-        CKEDITOR.config.height = 315;
-
-
-          </script>
-
-
+        @livewireScripts    
+        @stack('scripts')
 
     </body>
 

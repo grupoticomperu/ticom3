@@ -26,7 +26,7 @@
                     </div>
 
 
-                    <div class="px-4 py-1 mb-2 ">
+{{--                     <div class="px-4 py-1 mb-2 ">
                         <x-jet-label value="Descripción" />
                         <x-jet-input type="text" 
                                     class="w-full capitalize"
@@ -35,24 +35,53 @@
                     <x-jet-input-error for="description" />
 
                     
-                    </div>    
+                    </div>  --}}   
 
-                    <div wire:ignore>
+
+
+                        {{-- Descrición --}}
+        <div class="mx-4 mb-4">
+            <div wire:ignore>
+                <x-jet-label value="Descripción" />
+                <textarea rows="8" class="w-full form-control" 
+                    wire:model="description"
+                    x-data 
+                    x-init="ClassicEditor.create($refs.miEditor)
+                    .then(function(editor){
+                        editor.model.document.on('change:data', () => {
+                            @this.set('description', editor.getData())
+                        })
+                    })
+                    .catch( error => {
+                        console.error( error );
+                    } );"
+                    
+                    x-ref="miEditor"
+                    >
+                </textarea>
+            </div>
+            <x-jet-input-error for="description" />
+        </div>
+
+
+
+
+            {{--    <div wire:ignore>
                         <select wire:model="categoriess" class="select2" data-placeholder="Select a State" style="width:90%;">
                             @foreach($categories as $category)
                             <option {{ collect(old('categories', $empresa->categories->pluck('id')))->contains($category->id) ? 'selected' : ''}}  value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                             
                         </select>
-                    </div>
+                    </div> --}}
 
 
-                    <x-jet-section-border />
+                <x-jet-section-border />
 
 
-                    <x-jet-danger-button  wire:click="save" wire:loading.attr="disabled" wire:target="save" class="mb-2 ml-2 disabled:opacity-25">
-                        Editar mi empresa
-                    </x-jet-danger-button>
+                <x-jet-danger-button  wire:click="save" wire:loading.attr="disabled" wire:target="save" class="mb-2 ml-2 disabled:opacity-25">
+                    Editar mi empresa
+                </x-jet-danger-button>
 
 
                 </div>
@@ -62,7 +91,7 @@
 
 
 
-        <script>
+{{--         <script>
 
             document.addEventListener('livewire:load', function(){
                 $('.select2').select2();
@@ -72,7 +101,12 @@
                 })
             })
                                 
-        </script>
+        </script> --}}
+
+    @push('scripts')
+        
+        <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    @endpush
 
 
 </div>

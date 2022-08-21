@@ -21,6 +21,8 @@
 
             {{-- ckeditor --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+        {{-- ckeditor --}}
+    
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body class="font-sans antialiased">

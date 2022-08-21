@@ -11,12 +11,11 @@
         
         @livewire('mi-empresa')
 
-
     </div>
-    
+{{--     
     <div class="container py-8 mx-auto">
         <figure class="mb-4">
-           {{--  <img class="object-cover object-center w-full h-80" src="{{ Storage::url($category->image) }}" alt=""> --}}
+          
         </figure>
              
         Datos de mi Empresa
@@ -24,7 +23,7 @@
        {{ $user[0]['id'] }}
        {{ $user[0]['email'] }}
         
-    </div>
+    </div> --}}
 
 </x-app-layout>
 

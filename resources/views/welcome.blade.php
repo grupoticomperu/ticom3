@@ -62,6 +62,26 @@
                 <p class="text-sm text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing adipisicing adipisicing elit.</p>
             </article>
 
+            <article>
+                <figure>
+                    <img class="object-cover w-full rounded-xl h-36"  src="{{asset('img/home/3.jpg')}}" alt="">
+                </figure>
+                <header class="mt-2">
+                    <h1 class="text-xl text-center text-gray-700">Mysql postgree</h1>
+                </header>
+                <p class="text-sm text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing adipisicing adipisicing elit.</p>
+            </article>
+
+            <article>
+                <figure>
+                    <img class="object-cover w-full rounded-xl h-36"  src="{{asset('img/home/4.jpg')}}" alt="">
+                </figure>
+                <header class="mt-2">
+                    <h1 class="text-xl text-center text-gray-700">Desarrollo web</h1>
+                </header>
+                <p class="text-sm text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing adipisicing adipisicing elit.</p>
+            </article>
+
         </div>
 
     </section>

@@ -15,24 +15,26 @@
 
     </x-slot>
 
+    <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
 
 
-    <div class="container py-8 mx-auto">
-        <figure class="mb-4">
-           {{--  <img class="object-cover object-center w-full h-80" src="{{ Storage::url($category->image) }}" alt=""> --}}
-        </figure>
-             
-        productos de la Empresa 
+       {{-- @livewire('mis-productos') --}}
+       @livewire('mis-productos')
 
-        <hr>
+{{--         <div class="container py-8 mx-auto">
+            <figure class="mb-4">
+            <img class="object-cover object-center w-full h-80" src="{{ Storage::url($category->image) }}" alt=""> 
+            </figure>
+                
+            productos de la Empresa 
 
-        @foreach ( $products as $product )
-           <p> {{ $product->name }} </p>
-        @endforeach
+            <hr>
 
-
-       {{--  @livewire('show-empresasporcategoria', ['category' => $category]) --}}
-        
+            @foreach ( $products as $product )
+            <p> {{ $product->name }} </p>
+            @endforeach
+            
+        </div> --}}
     </div>
 
 </x-app-layout>

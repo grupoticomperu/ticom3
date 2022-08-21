@@ -81,8 +81,30 @@
 
     </div>
     
+    
+
+    @push('css')
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    @endpush
+
+    @push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" ></script>
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+    <script>
+         $('.select2').select2({
+                tags:true
+            });
+    </script>
+    
+    <script>
+         CKEDITOR.replace('editor');
+        CKEDITOR.config.height = 315;
+    </script>
 
 
+    @endpush
 
 
     

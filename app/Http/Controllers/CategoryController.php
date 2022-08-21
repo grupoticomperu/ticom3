@@ -25,11 +25,11 @@ class CategoryController extends Controller
     } 
 
     public function showproductos(){
-        $id = Auth::user()->id;
+       // $id = Auth::user()->id;
         // $user = 1;
-        $products = Product::where('user_id', $id)->get();
+        //$products = Product::where('user_id', $id)->get();
         //return $products;
-        return view('products.show', compact('products'));
+        return view('products.show');
     } 
     
 
