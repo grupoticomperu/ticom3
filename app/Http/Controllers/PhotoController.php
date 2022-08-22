@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Photo;
 use Illuminate\Support\Facades\Storage;
+//use Intervention\Image\Facades\Image;
+use Image;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class PhotoController extends Controller
 {
@@ -19,8 +23,21 @@ class PhotoController extends Controller
     	]);
 
         //return "imagen cargada";
-  
-    	$photo = $request->file('file')->store('public');
+        //$nombre = $request->file('file')->getClientOriginalName();
+        $empresa = Auth::user()->razonsocial;
+        $aleatorio = Str::random(10);
+        $nombre = Str::slug($product->name." ".$empresa." ".$aleatorio).".jpg";
+        $ruta = storage_path().'\app\public\products/'. $nombre;
+
+        $marcadeagua = Image::make($request->file('file'));
+        $marcadeagua->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+        $logo = storage_path().'\app\public\products/'. 'logo.png';
+        $marcadeagua->insert($logo, 'bottom-right',10,10);
+        $marcadeagua->save($ruta);
+
+    	////$photo = $request->file('file')->store('public/products');
         //return $photo;
         //$photo  tiene el valor de: public/dffffffffjhsahasgk.jpg
         //si quieres mostrar la imagen con esta ruta da error
@@ -43,9 +60,10 @@ class PhotoController extends Controller
         */
 
     	Photo::create([
-    	   	'url' => Storage::url($photo),
-        //    'url' =>request()->file('photo')->store('public'),
-        //    'url' => request()->file('photo')->store('posts','public');
+    	   	//'url' => Storage::url($nombre),
+            'url'=>'/storage/products/'.$nombre,
+            //    'url' =>request()->file('photo')->store('public'),
+            //    'url' => request()->file('photo')->store('posts','public');
     		'product_id' => $product->id
 
     	]);
