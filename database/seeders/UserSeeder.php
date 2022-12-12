@@ -26,9 +26,12 @@ class UserSeeder extends Seeder
             'password' => bcrypt('12345678'),
             'razonsocial' => 'TICOM',
             'slug' => Str::slug('TICOM'),
+            'phone'=>'2662584',
+            'movil'=>'996929470',
+            'address'=>'Av. Peru 345',
         ])->assignRole('admin');;
 
 
-        User::factory(10)->create();
+        User::factory(1)->create();
     }
 }

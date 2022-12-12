@@ -13,21 +13,16 @@ $nav_links = [
     ],
     [
         'name' => 'Productos',
-        'route' => route('home'),
-        'active' => request()->routeIs('home')
+        'route' => route('listproducts'),
+        'active' => request()->routeIs('listproducts')
     ],
     [
-        'name' => 'Profesionales',
-        'route' => route('home'),
-        'active' => request()->routeIs('home')
+        'name' => 'Empresas',
+        'route' => route('listbusiness'),
+        'active' => request()->routeIs('listbusiness')
     ],
 
-    [
-        'name' => 'Automóviles',
-        'route' => route('home'),
-        'active' => request()->routeIs('home')
-    ]
-   
+
 
 
 
@@ -43,12 +38,12 @@ $nav_links = [
             <div class="flex items-center shrink-0">
                 <a href="{{ route('home') }}">
                     <x-jet-application-mark class="block w-auto h-9" />
-                    
+
                 </a>
             </div>
 
             <!-- Navigation Links -->
-{{--                 
+{{--
                 <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
                 </x-jet-nav-link>
@@ -58,16 +53,6 @@ $nav_links = [
 
 
 
-
-
-
-
-
-
-
-
-
-       
 {{--             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                     {{ __('Inicio') }}
@@ -80,7 +65,7 @@ $nav_links = [
                 <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
                     {{ $nav_link['name'] }}
                 </x-jet-nav-link>
-            </div>  
+            </div>
             @endforeach
 
 
@@ -89,7 +74,7 @@ $nav_links = [
 
         <div class="hidden sm:flex sm:items-center sm:ml-6">
             <!-- Teams Dropdown -->
-            @auth 
+            @auth
             @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                 <div class="relative ml-3">
                     <x-jet-dropdown align="right" width="60">
@@ -142,7 +127,7 @@ $nav_links = [
             <!-- Settings Dropdown -->
 
             <div class="relative ml-3">
-            @auth    
+            @auth
                 <x-jet-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -178,7 +163,7 @@ $nav_links = [
                             {{ __('Mi Productos') }}
                         </x-jet-dropdown-link>
 
-                        
+
                         <x-jet-dropdown-link href="{{ route('miempresa') }}">
                             {{ __('Mi Empresa') }}
                         </x-jet-dropdown-link>
@@ -191,9 +176,15 @@ $nav_links = [
                             {{ __('Mis Categorias1') }}
                         </x-jet-dropdown-link>
 
-                        <x-jet-dropdown-link href="{{ route('miscategoriasa', Auth::user()) }}">
+                        <x-jet-dropdown-link href="{{ route('showpedidos') }}">
+                            {{ __('Mis Pedidos') }}
+                        </x-jet-dropdown-link>
+
+
+                        {{-- lo comentamos porque generar error al pasar parametros luego de la suscripcion --}}
+                        {{-- <x-jet-dropdown-link href="{{ route('miscategoriasa', Auth::user()) }}">
                             {{ __('Mis Categorias2') }}
-                        </x-jet-dropdown-link> 
+                        </x-jet-dropdown-link> --}}
 
                         @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                             <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
@@ -215,9 +206,9 @@ $nav_links = [
                     </x-slot>
                 </x-jet-dropdown>
             @else
-            
+
                 <x-jet-danger-button class="px-2 py-1"> <a href="{{ route('login') }}" class="text-sm underline text-white-700">Ingresar</a> </x-jet-danger-button>
-                
+
                 <x-jet-danger-button class="px-2 py-1"> <a href="{{ route('register') }}" class="text-sm underline text-white-700">Regístrate</a> </x-jet-danger-button>
             @endauth
 

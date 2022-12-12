@@ -5,12 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lista de categorias</title>
+
+
+    <style>
+        body {
+          background-image: url('img/banerticom.jpg');
+        }
+    </style>
 </head>
+
+
+
+
 <body>
-   
-    
+
+
         @if ($categories->count())
-                        
+
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                         <tr>
@@ -31,7 +42,7 @@
                             class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                             orden
                         </th>
-     
+
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -59,13 +70,13 @@
                             </td>
 
                             <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                {{$category->slug}} 
+                                {{$category->slug}}
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @switch($category->state)
                                     @case(0)
-                                        <span wire:click="activar({{ $category }})" 
+                                        <span wire:click="activar({{ $category }})"
                                             class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full cursor-pointer">
                                             Borrador
                                         </span>
@@ -81,9 +92,9 @@
                                 @endswitch
 
                             </td>
-                            
+
                             <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                {{$category->order}} 
+                                {{$category->order}}
                             </td>
 
 

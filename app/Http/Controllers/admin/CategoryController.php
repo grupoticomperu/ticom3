@@ -28,6 +28,7 @@ class CategoryController extends Controller
     }
 
 
+
     public function pdf()
     {
         $categories = Category::all();

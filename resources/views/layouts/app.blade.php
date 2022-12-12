@@ -5,11 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'laravel') }}</title>
+       {{--  <title>{{ config('app.name', 'laravel') }}</title> --}}
+
+        <title>@yield('title', 'TICOM el Portal Empresarial')</title>
+
+        <META name="title" content="@yield('meta-title','Diseño de Páginas web, Desarrollo de páginas web') ">
+        <META charset="utf-8" name="description" content="@yield('meta-description','Este es el Blog de TICOM')">
+        <META name="keywords" content="@yield('keywords','Diseño de Páginas web, Desarrollo de páginas web')">
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
+        <link rel="stylesheet" href="/css/style2.css">
+
+
+          {{-- FlexSlider --}}
+          <link rel="stylesheet" href="{{ asset('vendor/FlexSlider/flexslider.css') }}">
 
         {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 
@@ -21,10 +32,22 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <link rel="icon" href="{{ asset('img/ticom.ico') }}">
 
-        @livewireStyles    
+        @livewireStyles
+
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+
+        {{-- jquery --}}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        {{-- FlexSlider --}}
+        <script src="{{ asset('vendor/FlexSlider/jquery.flexslider-min.js') }}"></script>
+
+
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -45,12 +68,31 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <footer>
+                <hr>
+                <h3>Pie de página</h3>
+            </footer>
         </div>
 
         @stack('modals')
 
-        @livewireScripts    
+        @livewireScripts
         @stack('scripts')
+
+        <script>
+
+            livewire.on('alert', function(message){
+                Swal.fire(
+                    ' EL PORTAL EMPRESARIAL TICOM  ',
+                    message,
+                    'success'
+                    )
+            })
+
+
+        </script>
+
 
     </body>
 

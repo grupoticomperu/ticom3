@@ -20,9 +20,21 @@ class CategoryController extends Controller
         return view('categories.showepc', compact('category'));
     }
 
-     public function showempresa(User $busine){
+    public function showempresa(User $busine){
+
         return view('categories.showempresa', compact('busine'));
-    } 
+    }
+
+    public function aboutempresa(User $busine){
+
+        return view('categories.aboutempresa', compact('busine'));
+    }
+
+    public function contactempresa(User $busine){
+
+        return view('categories.contactempresa', compact('busine'));
+    }
+
 
     public function showproductos(){
        // $id = Auth::user()->id;
@@ -30,8 +42,16 @@ class CategoryController extends Controller
         //$products = Product::where('user_id', $id)->get();
         //return $products;
         return view('products.show');
-    } 
-    
+    }
+
+
+    public function showpedidos(){
+        // $id = Auth::user()->id;
+         // $user = 1;
+         //$products = Product::where('user_id', $id)->get();
+         //return $products;
+         return view('pedidos.show');
+     }
 
     public function miempresa(){
         // $user = 1;
@@ -40,7 +60,7 @@ class CategoryController extends Controller
          $user = User::where('id', $empresa)->get();
         //return  $user;
          return view('miempresa.show', compact('user'));
-     } 
+     }
 
      public function miscategorias(){
         // $user = 1;
@@ -51,23 +71,23 @@ class CategoryController extends Controller
         //return  $user;
         $categories = Category::all();
          return view('miempresa.miscategoriass', compact('user', 'categories'));
-     } 
+     }
 
 
 
 
-     public function edit(User $user){
-
+     public function edit(){
+        $user = Auth::user();
         $categories = Category::all();
-    	  
+
     	return view('miempresa.miscategorias', compact('categories','user'));
     }
-    
+
 
     public function editd(User $user){
 
         $categories = Category::all();
-    	  
+
     	return view('miempresa.miscategoriasd', compact('categories','user'));
     }
 
@@ -76,32 +96,32 @@ class CategoryController extends Controller
 
      public function update(User $user, StoreEmpresaRequest $request)
      {
-     
+
         $user->update($request->only('razonsocial', 'description'));
         //$categorium->update($request->only('nombre'));
 
-/*         User::update([         
+/*         User::update([
             $user->razonsocial  => $request->get('razonsocial'),
             $user->description => $request->get('description')
         ]);
  */
         $user->syncCategories($request->get('categories'));
-         
+
      }
 
      public function updated(User $user, StoreEmpresaRequest $request)
      {
-     
+
         $user->update($request->only('razonsocial', 'description'));
         //$categorium->update($request->only('nombre'));
 
-/*         User::update([         
+/*         User::update([
             $user->razonsocial  => $request->get('razonsocial'),
             $user->description => $request->get('description')
         ]);
  */
         $user->syncCategories($request->get('categories'));
-         
+
      }
 
 

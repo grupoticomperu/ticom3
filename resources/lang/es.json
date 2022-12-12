@@ -424,5 +424,13 @@
   "Update attached :resource: :title": "Actualizar :resource adjunto: :title",
   ":resource Details: :title": "Detalles de :resource: :title",
   "The HasOne relationship has already been filled.": "La relación HasOne ya ha sido llenada.",
-  "An error occurred while uploading the file.": "Ocurrió un error al subir el archivo."
+  "An error occurred while uploading the file.": "Ocurrió un error al subir el archivo.",
+  "Whoops! Something went wrong.": "Ups! Algo salio mal.",
+  "Manage Account": "Administrar.",
+  "Already registered?": "Ya estas registrado?",
+  "Name": "Nombre"
+
+
+
+
 }

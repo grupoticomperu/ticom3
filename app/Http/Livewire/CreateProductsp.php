@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
 class CreateProductsp extends Component
@@ -19,7 +20,15 @@ class CreateProductsp extends Component
 
     }
 
+    public function updatedName($value){
+        if(Auth::user()->razonsocial){
+            $slug = $value." ".Auth::user()->razonsocial." ".Str::random(3);
+        }else{
+            $slug = $value." ".Auth::user()->name." ".Str::random(3);
+        }
 
+        $this->slug = Str::slug($slug);
+    }
 
 
     protected $rules = [
@@ -35,7 +44,8 @@ class CreateProductsp extends Component
         $product = Product::create([
             'tipo' => $this->tipo,
             'name' => $this->name,
-            'slug' => $this->name,
+            'slug' => $this->slug,
+                        //Str::slug($value);
             'user_id' => $this->user_id,
 
         ]);
@@ -44,10 +54,10 @@ class CreateProductsp extends Component
 
         /*$this->reset('open','title','content','image'); */
         // $this->reset(['open','title','content','image']);
-      
+
        // $this->emitTo('show-posts', 'render');
         //$this->emit('render');
-        //$this->emit('alert','El post se creo correctament');
+        $this->emit('alert','El registro se creo correctamente');
         return redirect()->route('products.editd', $product);
     }
 

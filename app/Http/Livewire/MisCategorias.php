@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class MisCategorias extends Component
 {
-    
-    public $categories, $empresa, $user;
+
+    public $categories, $empresa, $user, $contador;
 
     public $editForm = [
         //'name' => null,
@@ -25,7 +25,17 @@ class MisCategorias extends Component
         'editForm.categories' => 'categorias'
     ];
 
-
+    public function contadores(){
+        //contador captura el numero de elementos
+        $this->contador = count($this->editForm['categories']);
+        if($this->contador > 5)
+            $this->emit('alert','Sólo se permite 5 Categorias');
+            //elimino el ultimo elemento
+            unset($this->editForm['categories'][5]);
+            //actualizo el valor del contador
+            $this->contador = count($this->editForm['categories']);
+            return;
+    }
 
 
     public function getCategories(){
@@ -42,10 +52,16 @@ class MisCategorias extends Component
         //dd($user);
         $this->getCategories();
 
+        //$this->contador = count($this->editForm['categories']);
+
+
+
         //$this->editForm['name'] = $user->name;
         //dd($user->categories->pluck('id'));
-        
-        $this->editForm['categories'] = $user->categories->pluck('id'); 
+
+        $this->editForm['categories'] = $user->categories->pluck('id');
+        //dd($this->editForm['categories']);
+
 
         //$this->categories = Category::all();
         //dd($this->categories);
@@ -57,10 +73,10 @@ class MisCategorias extends Component
     }
 
 
- 
+
     public function render()
     {
-         
+
        // return $categories;
         return view('livewire.mis-categorias');
     }
@@ -69,8 +85,18 @@ class MisCategorias extends Component
     {
        // $this->user->syncCategories($this->categories);
 
+       if($this->contador > 5)
+       {
+        //return;
+        $this->emit('alert','No se GRABO, Sólo se permite 5 Categorias');
+
+       }else{
         //$this->category->brands()->sync($this->editForm['brands']);
         $this->user->categories()->sync($this->editForm['categories']);
         $this->getCategories();
+        $this->emit('alert','Las Categorias fueron asignadas con éxito');
+       }
+
+
     }
 }

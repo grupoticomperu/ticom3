@@ -29,7 +29,7 @@ class CreateProducts extends Component
 
     protected $rules = [
         'name'=> 'required',
-        'slug'=> 'required|unique:categories,slug',
+        'slug'=> 'required|unique:products,slug',
         'shortdescription'=>'required|min:3',
         'longdescription'=>'required|min:3',
         'title'=> 'min:5',
@@ -72,10 +72,6 @@ class CreateProducts extends Component
         $this->emit('alert','El producto se creo correctament');
         return redirect()->route('showproductos');
     }
-
-
-
-
 
 
 

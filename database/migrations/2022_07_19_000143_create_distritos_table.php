@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('distritos', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('iddi')->nullable();
+         Schema::create('distritos', function (Blueprint $table) {
+            $table->string('id');
+            $table->primary('id');
+            //$table->string('iddi')->nullable();
             $table->string('name')->nullable();
-            $table->unsignedBigInteger('provincia_id');
-            $table->unsignedBigInteger('departamento_id');
+            $table->string('provincia_id');
+            $table->string('departamento_id');
 
             $table->foreign('departamento_id')->references('id')->on('departamentos')->onDelete('cascade');
             $table->foreign('provincia_id')->references('id')->on('provincias')->onDelete('cascade');

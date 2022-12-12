@@ -5,7 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>administrador</title>
+
+        <title>@yield('titleok')</title>
+
+        <META name="title" content="@yield('meta-title','Diseño de Páginas web, Desarrollo de páginas web') ">
+        <META charset="utf-8" name="description" content="@yield('meta-description','Este es el Blog de TICOM')">
+        <META name="keywords" content="@yield('keywords','Diseño de Páginas web, Desarrollo de páginas web')">
+
+
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -22,15 +29,15 @@
             {{-- ckeditor --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
         {{-- ckeditor --}}
-    
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
-            @livewire('admin.navigation') 
-            
+            @livewire('admin.navigation')
+
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -66,6 +73,6 @@
 
         </script>
 
-        
+
     </body>
 </html>

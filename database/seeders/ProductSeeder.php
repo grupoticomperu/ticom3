@@ -16,11 +16,15 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
+
         Product::create([
             'name' => 'celular motorola 2022',
             'slug' => Str::slug('celular motorola'),
-            'description' => 'celular motorola celular motorolacelular motorolacelular motorolacelular motorola',
+            'longdescription' => 'celular motorola celular motorolacelular motorolacelular motorolacelular motorola',
             'price' => 100,
+            'stock' => 10,
+            'state' => 1,
+            'item_id' => 2,
             'user_id' => 1,
 
         ]);
@@ -28,8 +32,11 @@ class ProductSeeder extends Seeder
         Product::create([
             'name' => 'celular samsung',
             'slug' => Str::slug('celular samsung'),
-            'description' => 'celular samsungcelular samsungcelular samsungcelular samsungcelular samsungcelular samsung',
+            'longdescription' => 'celular samsungcelular samsungcelular samsungcelular samsungcelular samsungcelular samsung',
             'price' => 120,
+            'stock' => 10,
+            'state' => 1,
+            'item_id' => 2,
             'user_id' => 1,
 
         ]);
@@ -38,8 +45,11 @@ class ProductSeeder extends Seeder
         Product::create([
             'name' => 'monitores samsung',
             'slug' => Str::slug('monitores samsung'),
-            'description' => 'monitores samsungmonitores samsungmonitores samsungmonitores samsungmonitores samsungmonitores samsungmonitores samsungmonitores samsung',
+            'longdescription' => 'monitores samsungmonitores samsungmonitores samsungmonitores samsungmonitores samsungmonitores samsungmonitores samsungmonitores samsung',
             'price' => 180,
+            'stock' => 10,
+            'state' => 1,
+            'item_id' => 1,
             'user_id' => 1,
 
         ]);
@@ -48,8 +58,11 @@ class ProductSeeder extends Seeder
         Product::create([
             'name' => 'teclados para guemer',
             'slug' => Str::slug('teclados para guemer'),
-            'description' => 'teclados para guemerteclados para guemerteclados para guemerteclados para guemerteclados para guemerteclados para guemer',
+            'longdescription' => 'teclados para guemerteclados para guemerteclados para guemerteclados para guemerteclados para guemerteclados para guemer',
             'price' => 87,
+            'stock' => 10,
+            'state' => 1,
+            'item_id' => 2,
             'user_id' => 1,
 
         ]);
@@ -58,8 +71,11 @@ class ProductSeeder extends Seeder
         Product::create([
             'name' => 'procesadores intel para pc',
             'slug' => Str::slug('procesadores intel para pc'),
-            'description' => 'procesadores intel para pcprocesadores intel para pcprocesadores intel para pcprocesadores intel para pcprocesadores intel para pc',
+            'longdescription' => 'procesadores intel para pcprocesadores intel para pcprocesadores intel para pcprocesadores intel para pcprocesadores intel para pc',
             'price' => 165,
+            'stock' => 10,
+            'state' => 1,
+            'item_id' => 1,
             'user_id' => 1,
 
         ]);
@@ -68,8 +84,11 @@ class ProductSeeder extends Seeder
         Product::create([
             'name' => 'parlantes con bajos',
             'slug' => Str::slug('parlantes con bajos'),
-            'description' => 'parlantes con bajosparlantes con bajosparlantes con bajosparlantes con bajosparlantes con bajosa',
+            'longdescription' => 'parlantes con bajosparlantes con bajosparlantes con bajosparlantes con bajosparlantes con bajosa',
             'price' => 88,
+            'stock' => 10,
+            'state' => 1,
+            'item_id' => 1,
             'user_id' => 1,
 
         ]);
@@ -77,8 +96,11 @@ class ProductSeeder extends Seeder
         Product::create([
             'name' => 'monitor toch cream',
             'slug' => Str::slug('monitor-toch-cream'),
-            'description' => 'monitor toch cream monitor toch cream monitor toch cream monitor toch cream',
+            'longdescription' => 'monitor toch cream monitor toch cream monitor toch cream monitor toch cream',
             'price' => 265,
+            'stock' => 10,
+            'state' => 1,
+            'item_id' => 1,
             'user_id' => 2,
 
         ]);
@@ -87,11 +109,15 @@ class ProductSeeder extends Seeder
         Product::create([
             'name' => 'audifono de marca',
             'slug' => Str::slug('audifono-de-marcas'),
-            'description' => 'audifono de marca audifono de marca audifono de marcaaudifono de marcaaudifono de marcaaudifono de marcaaudifono de marcaaudifono de marca',
+            'longdescription' => 'audifono de marca audifono de marca audifono de marcaaudifono de marcaaudifono de marcaaudifono de marcaaudifono de marcaaudifono de marca',
             'price' => 98,
+            'stock' => 10,
+            'state' => 1,
+            'item_id' => 1,
             'user_id' => 2,
 
         ]);
+
 
     }
 }

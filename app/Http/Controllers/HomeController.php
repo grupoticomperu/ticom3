@@ -3,12 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
     public function __invoke()
     {
+        //$bussiness = User::orderBy('id', 'desc')->take(12)->get();
+        $bussiness = User::where('state', 1)
+                                ->take(12)->get();
+        $productos = Product::where('state', 1)->orderBy('id', 'desc')->take(12)->get();
 
-        return view('welcome');
+    //dd($bussiness);
+        return view('welcome', compact('bussiness', 'productos'));
     }
 }
+;

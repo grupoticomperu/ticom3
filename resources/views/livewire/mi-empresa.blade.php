@@ -1,41 +1,41 @@
 <div>
-    
+
     <div class="py-1">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">  
-  
+            <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
+
                     <div class="px-4 py-4 mb-2 ">
                         <x-jet-label value="Razón Social" />
-                        <x-jet-input type="text" 
+                        <x-jet-input type="text"
                                     class="w-full capitalize"
                                     wire:model="razonsocial"
                                     placeholder="Ingrese la Razón Social de tu Empresa " />
-                     <x-jet-input-error for="razonsocial" /> 
-                    
-                    </div>    
+                     <x-jet-input-error for="razonsocial" />
+
+                    </div>
 
                     <div class="px-4 py-1 mb-2">
                         <x-jet-label value="Slug" />
                         <x-jet-input type="text"
                             disabled
                             wire:model="slug"
-                            class="w-full bg-gray-200" 
+                            class="w-full bg-gray-200"
                             placeholder="Ingrese el slug de la categoria" />
 
-                    <x-jet-input-error for="slug" /> 
+                    <x-jet-input-error for="slug" />
                     </div>
 
 
 {{--                     <div class="px-4 py-1 mb-2 ">
                         <x-jet-label value="Descripción" />
-                        <x-jet-input type="text" 
+                        <x-jet-input type="text"
                                     class="w-full capitalize"
                                     wire:model="description"
                                     placeholder="Ingrese la Razón Social de tu Empresa " />
                     <x-jet-input-error for="description" />
 
-                    
-                    </div>  --}}   
+
+                    </div>  --}}
 
 
 
@@ -43,9 +43,9 @@
         <div class="mx-4 mb-4">
             <div wire:ignore>
                 <x-jet-label value="Descripción" />
-                <textarea rows="8" class="w-full form-control" 
+                <textarea rows="8" class="w-full form-control"
                     wire:model="description"
-                    x-data 
+                    x-data
                     x-init="ClassicEditor.create($refs.miEditor)
                     .then(function(editor){
                         editor.model.document.on('change:data', () => {
@@ -55,7 +55,7 @@
                     .catch( error => {
                         console.error( error );
                     } );"
-                    
+
                     x-ref="miEditor"
                     >
                 </textarea>
@@ -66,12 +66,78 @@
 
 
 
+
+
+
+
+        <div class="grid px-4 py-1 mb-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-x-6">
+
+
+                <div>
+                    <x-jet-label value="Departamento" />
+
+                    <select class="w-full form-control" wire:model="department_id">
+
+                        <option value="" disabled selected>Seleccione un Departamento</option>
+
+                        @foreach ($departments as $department)
+                            <option value="{{$department->id}}">{{$department->name}}</option>
+                        @endforeach
+                    </select>
+
+                    <x-jet-input-error for="department_id" />
+                </div>
+
+                {{-- Ciudades --}}
+                <div>
+                    <x-jet-label value="Provincia" />
+
+                    <select class="w-full form-control" wire:model="city_id">
+
+                        <option value="" disabled selected>Seleccione una ciudad</option>
+
+                        @foreach ($provincias as $city)
+                            <option value="{{$city->id}}">{{$city->name}}</option>
+                        @endforeach
+                    </select>
+
+                    <x-jet-input-error for="city_id" />
+                </div>
+
+
+                {{-- Distritos --}}
+                <div>
+                    <x-jet-label value="Distrito" />
+
+                    <select class="w-full form-control" wire:model="district_id">
+
+                        <option value="" disabled selected>Seleccione un distrito</option>
+
+                        @foreach ($distritos as $district)
+                            <option value="{{$district->id}}">{{$district->name}}</option>
+                        @endforeach
+                    </select>
+
+                    <x-jet-input-error for="district_id" />
+                </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
             {{--    <div wire:ignore>
                         <select wire:model="categoriess" class="select2" data-placeholder="Select a State" style="width:90%;">
                             @foreach($categories as $category)
                             <option {{ collect(old('categories', $empresa->categories->pluck('id')))->contains($category->id) ? 'selected' : ''}}  value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
-                            
+
                         </select>
                     </div> --}}
 
@@ -96,15 +162,15 @@
             document.addEventListener('livewire:load', function(){
                 $('.select2').select2();
                 $('.select2').on('change', function(){
-                     @this.set('categoriess', this.value); 
+                     @this.set('categoriess', this.value);
                     /*@this.set('categoriess', $(this).value());*/
                 })
             })
-                                
+
         </script> --}}
 
     @push('scripts')
-        
+
         <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     @endpush
 

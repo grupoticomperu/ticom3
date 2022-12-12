@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -41,12 +42,36 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->attributes['razonsocial'] = $razonsocial;
         $this->attributes['slug'] = str::slug($razonsocial);
+        $this->attributes['state'] = 1;
 
     }
 
+    public function getRazonsocialAttribute($razonsocial)
+    {
+        return  strtoupper($razonsocial);
+    }
 
 
+ /*    protected function razonsocial(): Attribute
+    { */
 
+       /*  return new Attribute(
+            get: fn($value)=>strtoupper($value),
+            set: fn($value)=>strtoupper($value),
+        );
+         */
+
+
+       /*  return new Attribute(
+            get: function($value){
+                return strtoupper($value);
+            },
+
+            set: function($value){
+                return strtoupper($value);
+            }
+        ); */
+ /*    } */
 
 
     public function syncCategories($categories)
@@ -60,11 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -103,11 +124,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function categories(){
         return $this->belongsToMany(Category::class);
     }
-
-
-
-
-
 
 
 }

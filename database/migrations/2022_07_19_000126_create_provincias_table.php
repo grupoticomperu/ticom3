@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('provincias', function (Blueprint $table) {
-            $table->id();
-            $table->string('idp')->nullable();
+            $table->string('id');
+            $table->primary('id');
+            //$table->string('idp')->nullable();
             $table->string('name')->nullable();
-            $table->unsignedBigInteger('departamento_id');
+            //$table->unsignedBigInteger('departamento_id');
+            $table->string('departamento_id');
 
             $table->foreign('departamento_id')->references('id')->on('departamentos')->onDelete('cascade');
 
