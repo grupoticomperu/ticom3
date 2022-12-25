@@ -10,7 +10,7 @@ class ShowCategories extends Component
 {
     public $search='';
     public $sort='id';
-    public $direction='desc';
+    public $direction='asc';
     public $cant='10';
 
     use WithPagination;
@@ -22,7 +22,7 @@ class ShowCategories extends Component
     protected $queryString = [
         'cant'=>['except'=>'10'],
         'sort'=>['except'=>'id'],
-        'direction'=>['except'=>'desc'],
+        'direction'=>['except'=>'asc'],
         'search'=>['except'=>''],
     ];
 
@@ -39,8 +39,8 @@ class ShowCategories extends Component
                                 ->where('state', 1)
                                 ->orderBy($this->sort, $this->direction)
                                 ->paginate($this->cant);
-        return view('livewire.show-categories', compact('categories'))->layout('layouts.admin'); 
-       
+        return view('livewire.show-categories', compact('categories'))->layout('layouts.admin');
+
     }
 
 

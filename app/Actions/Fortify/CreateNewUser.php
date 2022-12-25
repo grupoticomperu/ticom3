@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 use App\Models\Company;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -21,18 +23,23 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+
+
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'razonsocial' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+            'g-recaptcha-response' => 'required|captcha',
         ])->validate();
 
         // $userii = User::create([
         return User::create([
             'name' => $input['name'],
             'razonsocial' => $input['razonsocial'],
+            'email_verified_at' => Carbon::now(),
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);

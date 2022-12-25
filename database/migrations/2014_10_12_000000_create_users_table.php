@@ -18,13 +18,15 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
+            $table->string('external_id')->nullable();
+            $table->string('external_provider')->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
 
-            $table->text('razonsocial')->unique();
-            $table->string('slug')->unique();
+            $table->string('razonsocial')->unique();
+            $table->string('slug');
             $table->string('ruc')->nullable();
             $table->string('tradename')->nullable();
             $table->text('logo')->nullable();
@@ -64,9 +66,16 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('keywords')->nullable();
 
-
-
             $table->boolean('state')->default(false);
+
+            $table->string('departamento_id')->nullable();
+            $table->foreign('departamento_id')->references('id')->on('departamentos');
+
+            $table->string('provincia_id')->nullable();
+            $table->foreign('provincia_id')->references('id')->on('provincias');
+
+            $table->string('distrito_id')->nullable();
+            $table->foreign('distrito_id')->references('id')->on('distritos');
 
 
 

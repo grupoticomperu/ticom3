@@ -27,9 +27,9 @@
                         <li class="bg-white rounded-lg shadow">
 
                             <article class="card">
-                                <img class="object-cover w-full h-36" src="{{asset('img/home/1.jpg')}}" alt="">
+                                <img class="object-cover w-full h-36" src="{{asset('img/home/1.jpg')}}" alt="Portal de Empresas">
                                 <div class="card-body">
-                                    <h1 class="card-title">{{Str::limit($busines->razonsocial, 30)}}</h1>
+                                    <p class="mb-3 text-xs text-gray-900">{{ Str::limit($busines->razonsocial, 22)}}</p>
 
                                     <div class="flex">
                                         <ul class="flex text-sm">

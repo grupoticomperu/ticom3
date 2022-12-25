@@ -1,6 +1,6 @@
 <div>
-    <div class="grid grid-cols-1 border divide-y border-b-neutral-400">
-        <div class="flex-1">
+    <div class="grid grid-cols-1 bg-white border rounded-lg shadow-lg border-b-neutral-400">
+        <div class="flex-1 mt-3">
             <div class="col-span-2 px-4 py-1 mb-2 ">
                 <x-jet-label value="Nombres y Apellidos" />
                 <x-jet-input type="text" class="w-full capitalize"
@@ -44,12 +44,12 @@
         </div>
 
         <div class="flex-1 mx-2 mb-2">
-            <x-jet-button class="w-full"
+            <x-jet-danger-button class="w-full mb-2"
             wire:click="save"
             wire:loading.attr="disabled"
             wire:target="save">
                 Contactar con el Anunciante
-            </x-jet-button>
+            </x-jet-danger-button>
         </div>
 
     </div>

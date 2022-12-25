@@ -50,6 +50,7 @@
                             <div class="grid grid-cols-1 mx-4 bg-gray-200">
                                 <form method="POST" action="{{route('products.photos.store', $product )}}" class="dropzone" id="my-awesome-dropzone">
 
+
                                 </form>
                             </div>
 
@@ -272,6 +273,7 @@
                                     </div> --}}
 
 
+
                                     {{-- Description de Google --}}
                                     {{-- <div class="px-4 py-1 mb-2">
                                         <div wire:ignore>
@@ -325,9 +327,12 @@
 
 @push('css')
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css"
-integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A=="
-crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css"
+    integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
 @endpush
 
 @push('scripts')
@@ -337,13 +342,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     integrity="sha512-oQq8uth41D+gIH/NJvSJvVB85MFk1eWpMK6glnkg6I7EdMqC1XVkW7RxLheXwmFdG03qScCM7gKS/Cx3FYt7Tg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
     <script>
 
         Dropzone.options.myAwesomeDropzone = {
             headers:{
                 'X-CSRF-TOKEN' : "{{csrf_token()}}"
             },
-           // paramName: "file",
+            //paramName: "file",
             maxFilesize: 10,
             dictDefaultMessage: "Click aqui para subir imagenes del producto o arrastre sus imagenes aquí",
             acceptedFiles:"image/*",

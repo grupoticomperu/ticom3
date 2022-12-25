@@ -428,7 +428,9 @@
   "Whoops! Something went wrong.": "Ups! Algo salio mal.",
   "Manage Account": "Administrar.",
   "Already registered?": "Ya estas registrado?",
-  "Name": "Nombre"
+  "Name": "Nombre",
+  "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "¿Olvidaste tu contraseña? No hay problema. Simplemente háganos saber su dirección de correo electrónico y le enviaremos un enlace de restablecimiento de contraseña que le permitirá elegir una nueva.",
+  "Email Password Reset Link": "Recuperar Contraseña"
 
 
 

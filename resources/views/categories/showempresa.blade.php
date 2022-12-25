@@ -119,7 +119,7 @@
            {{--  <img class="object-cover object-center w-full h-80" src="{{ Storage::url($category->image) }}" alt=""> --}}
         </figure>
 
-        <h1 class="mt-5 text-3xl text-center uppercase">{{ $busine->id}}</h1>
+        <h1 class="mt-5 text-3xl text-center uppercase">{{ $busine->razonsocial}}</h1>
         <h1>{{ $busine->description}}</h1>
         <hr>
        {{--  @livewire('show-empresasporcategoria', ['category' => $category]) --}}

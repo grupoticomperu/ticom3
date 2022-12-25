@@ -69,9 +69,9 @@
                 {{ $slot }}
             </main>
 
-            <footer>
+            <footer class="mt-6 text-center bg-blue-900">
                 <hr>
-                <h3>Pie de página</h3>
+                <h3 class="p-2 text-white">TICOM el Portal Empresarial</h3>
             </footer>
         </div>
 

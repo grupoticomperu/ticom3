@@ -61,15 +61,25 @@
                 </div>
             @endif
 
+
+            <div class="mt-3">
+                {!! NoCaptcha::renderJs() !!}
+                {!! NoCaptcha::display() !!}
+            </div>
+
+
             <div class="flex items-center justify-end mt-4">
                 <a class="text-sm text-gray-600 underline hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
                 <x-jet-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Registrate') }}
                 </x-jet-button>
             </div>
         </form>
+
+
+
     </x-jet-authentication-card>
 </x-guest-layout>

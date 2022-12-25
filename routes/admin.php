@@ -16,6 +16,9 @@ Route::get('categories/export', [CategoryController::class, 'exportCategories'])
 Route::get('categories/pdf', [CategoryController::class, 'pdf'])->name('admin.categories.pdf');
 Route::get('categories/ventapdf', [CategoryController::class, 'ventapdf'])->name('admin.categories.ventapdf');
 
+//para generar slug masivo, inhabilitar lugo de generdo el slug
+Route::get('categories/slug', [CategoryController::class, 'generateslug'])->name('admin.categories.generateslug');
+
 
 
 /* Route::get('categories/{category}', ShowCategories::class)->name('admin.categories.update'); */

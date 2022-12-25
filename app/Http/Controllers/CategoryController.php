@@ -12,7 +12,9 @@ use App\Http\Requests\StoreEmpresaRequest;
 class CategoryController extends Controller
 {
     public function show(){
-        $categories =Category::all();
+       $categories =Category::all();
+       //$categories = Category::where('state', 1)->orderBy('id','asc');
+
         return view('categories.show', compact('categories'));
     }
 
@@ -24,6 +26,12 @@ class CategoryController extends Controller
 
         return view('categories.showempresa', compact('busine'));
     }
+
+    public function inicioempresa(User $busine){
+
+        return view('categories.showempresa', compact('busine'));
+    }
+
 
     public function aboutempresa(User $busine){
 

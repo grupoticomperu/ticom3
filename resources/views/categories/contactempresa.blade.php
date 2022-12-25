@@ -139,27 +139,69 @@
                 <div>
                     <h3 class="mb-1 text-3xl text-center text-gray-600">Contactar a </h3>
                     <h3 class="mb-6 text-3xl text-center text-gray-600">{{ $busine->razonsocial}}</h3>
-                    <div class="w-full max-w-sm lg:max-w-full lg:flex">
-                        <div class="flex-none h-48 overflow-hidden text-center bg-cover rounded-t lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-l" style="background-image: url('/img/ticomempresas.jpg')" title="Woman holding a mug">
+                    <div class="max-w-sm sm:w-full lg:max-w-full lg:flex">
+                        <div class="flex-none h-48 overflow-hidden text-center bg-cover rounded-t lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-l" style="background-image: url('/img/ticomempresas.jpg')" title="Portal de Empresas">
                         </div>
-                        <div class="flex flex-col justify-between p-4 leading-normal bg-white border-b border-l border-r border-gray-400 rounded-b lg:border-l-0 lg:border-t lg:border-gray-400 lg:rounded-b-none lg:rounded-r">
+                        <div class="flex flex-col justify-between p-4 leading-normal bg-white rounded-b sm:w-full lg:rounded-b-none lg:rounded-r">
                           <div class="mb-8">
 
-                            <div class="mb-2 text-xl font-bold text-gray-900">Contactar Ahora con {{ $busine->razonsocial }} aquí nuestros datos</div>
-                            <p class="text-base text-gray-700">{{ $busine->razonsocial }}</p>
-                            <p class="text-base text-gray-700">Ruc: {{ $busine->ruc }}</p>
+                            <div class="mb-2 text-xl font-bold text-gray-900">Nuestros Datos: </div>
+                            <p class="mb-2 text-base text-gray-700">{{ $busine->razonsocial }}</p>
+                            <div class="flex mb-2">
+                                <p class="text-base text-gray-900">RUC: </p>
+                                <p class="ml-2 text-base text-gray-500">{{ $busine->ruc }}</p>
+                            </div>
 
-                            <p class="text-base text-gray-700">Web: {{ $busine->web }}</p>
-                            <p class="text-base text-gray-700">Email1: {{ $busine->email }}</p>
-                            <p class="text-base text-gray-700">Email2: {{ $busine->email2 }}</p>
-                            <p class="text-base text-gray-700">Telf.: {{ $busine->phone }}</p>
-                            <p class="text-base text-gray-700">Cel: {{ $busine->movil }}</p>
-                            <p class="text-base text-gray-700">WhatsApp: {{ $busine->whatsapp }}</p>
-                            <p class="text-base text-gray-700">Dirección: {{ $busine->address }}</p>
+                            <div class="flex mb-2">
+                                <p class="text-base text-gray-900">WEB: </p>
+                                <p class="ml-2 text-base text-gray-500">{{ $busine->web }}</p>
+                            </div>
 
-                            <p class="text-base text-gray-700">Facebook: {{ $busine->address }}</p>
-                            <p class="text-base text-gray-700">Instagram: {{ $busine->address }}</p>
-                            <p class="text-base text-gray-700">Youtube: {{ $busine->address }}</p>
+                            <div class="flex mb-2">
+                                <p class="text-base text-gray-900">EMAIL: </p>
+                                <p class="ml-2 text-base text-gray-500">{{ $busine->email }}</p>
+                            </div>
+
+                            <div class="flex mb-2">
+                                <p class="text-base text-gray-900">EMAIL: </p>
+                                <p class="ml-2 text-base text-gray-500">{{ $busine->email2 }}</p>
+                            </div>
+
+                            <div class="flex mb-2">
+                                <p class="text-base text-gray-900">TELF.: </p>
+                                <p class="ml-2 text-base text-gray-500">{{ $busine->phone }}</p>
+                            </div>
+
+                            <div class="flex mb-2">
+                                <p class="text-base text-gray-900">CEL.: </p>
+                                <p class="ml-2 text-base text-gray-500">{{ $busine->movil }}</p>
+                            </div>
+
+                            <div class="flex mb-2">
+                                <p class="text-base text-gray-900">WHATSAPP: </p>
+                                <p class="ml-2 text-base text-gray-500">{{ $busine->whatsapp }}</p>
+                            </div>
+
+                            <div class="flex mb-2">
+                                <p class="text-base text-gray-900">DIRECCIÓN: </p>
+                                <p class="ml-2 text-base text-gray-500">{{ $busine->address }}</p>
+                            </div>
+
+                            <div class="flex mb-2">
+                                <p class="text-base text-gray-900">FACEBOOK: </p>
+                                <p class="ml-2 text-base text-gray-500">{{ $busine->address }}</p>
+                            </div>
+
+                            <div class="flex mb-2">
+                                <p class="text-base text-gray-900">INSTAGRAM: </p>
+                                <p class="ml-2 text-base text-gray-500">{{ $busine->address }}</p>
+                            </div>
+
+                            <div class="flex mb-2">
+                                <p class="text-base text-gray-900">YOUTUBE: </p>
+                                <p class="ml-2 text-base text-gray-500">{{ $busine->address }}</p>
+                            </div>
+
 
                           </div>
                           <div class="flex items-center">

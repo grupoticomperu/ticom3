@@ -8,6 +8,7 @@ use App\Imports\CategoriesImport;
 use App\Exports\CategoriesExport;
 use App\Models\Category;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Str;
 //use PDF;
 //use Barryvdh\DomPDF\Facade\Pdf;
 use PhpOffice\PhpSpreadsheet\Writer\Pdf as WriterPdf;
@@ -54,5 +55,26 @@ class CategoryController extends Controller
        return $pdf->download('categories.pdf');
     }
 
+
+    public function generateslug()
+    {
+        $categories = Category::all();
+
+        foreach($categories as $category){
+            $category->update([
+                'slug' => str::slug($category->name),
+                'shortdescription' => Str::lower($category->name),
+                'longdescription' => Str::lower($category->name),
+                'image' => 'categories/'.str::slug($category->name).'.jpg',
+                'title' => Str::lower($category->name),
+                'description' => Str::lower($category->name),
+                'keywords' => Str::lower($category->name),
+            ]);
+        }
+
+        return redirect()->route('admin.products.index');
+
+
+    }
 
 }

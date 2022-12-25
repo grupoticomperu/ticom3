@@ -15,6 +15,19 @@ class ProductController extends Controller
 
     public function verproducto(Product $product){
 
-        return view('products.showproducto', compact('product'));
+        $category = $product->item;
+        $productrelacionado = Product::where('item_id',$category->id )
+                                        ->where('id','<>', $product->id )->get();
+
+        //dd($productrelacionado);
+        $cant = $productrelacionado->count();
+
+        if($cant > 4)
+        {
+            $cant = 4;
+        }
+
+        return view('products.showproducto', compact('product', 'productrelacionado', 'cant'));
+
     }
 }

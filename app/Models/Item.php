@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
+
+
+
+    //Relacion uno a muchos
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
+
+
+
+
 }
+
+
+
+

@@ -206,10 +206,16 @@ $nav_links = [
                     </x-slot>
                 </x-jet-dropdown>
             @else
+            <div class="hidden space-x-4 divide-x-2 sm:-my-px sm:ml-10 sm:flex">
 
-                <x-jet-danger-button class="px-2 py-1"> <a href="{{ route('login') }}" class="text-sm underline text-white-700">Ingresar</a> </x-jet-danger-button>
+                 <div>
+                 <a href="{{ route('login') }}" class="text-sm text-red-700 underline ">Ingresar</a>
+                </div>
+                <div>
+                 <a href="{{ route('register') }}" class="ml-3 text-sm text-red-700 underline">Regístrate</a>
+                </div>
 
-                <x-jet-danger-button class="px-2 py-1"> <a href="{{ route('register') }}" class="text-sm underline text-white-700">Regístrate</a> </x-jet-danger-button>
+            </div>
             @endauth
 
             </div>
@@ -320,9 +326,13 @@ $nav_links = [
     </div>
     @else
         <div class="border-t border-gray-200">
-            <x-jet-responsive-nav-link href="{{  route('login') }}" :active="request()->routeIs('login')">
+            <x-jet-nav-link href="{{  route('login') }}" :active="request()->routeIs('login')">
                Ingresar
-            </x-jet-responsive-nav-link>
+            </x-jet-nav-link>
+
+            <a href="">bbbbb</a>
+            <a href="">ccccc</a>
+
 
             <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                 Regístrate

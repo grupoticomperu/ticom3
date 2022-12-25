@@ -22,14 +22,19 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
     use HasRoles;
 
-    protected $fillable = [
+    protected $guarded = ['id'];
+
+/*     protected $fillable = [
         'name',
         'email',
         'password',
         'razonsocial',
         'slug',
-        'description'
-    ];
+        'description',
+        'external_provider',
+        'external_id',
+        'state'
+    ]; */
 
 
     public function getRouteKeyName()
