@@ -168,6 +168,14 @@ $nav_links = [
                             {{ __('Mi Empresa') }}
                         </x-jet-dropdown-link>
 
+                        <x-jet-dropdown-link href="{{ route('miempresa.logo.edit', Auth::user() ) }}">
+                            {{ __('Mi Logo') }}
+                        </x-jet-dropdown-link>
+
+                        <x-jet-dropdown-link href="{{ route('sliderclientes.index' ) }}">
+                            {{ __('Mi Slider') }}
+                        </x-jet-dropdown-link>
+
                         <x-jet-dropdown-link href="{{ route('profile.show') }}">
                             {{ __('Mis Datos') }}
                         </x-jet-dropdown-link>

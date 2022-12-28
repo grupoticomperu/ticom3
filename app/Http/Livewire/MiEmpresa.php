@@ -2,18 +2,23 @@
 
 namespace App\Http\Livewire;
 
+use file;
 use App\Models\User;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Distrito;
 use App\Models\Provincia;
 use Illuminate\Support\Str;
+//use Intervention\Image\Image;
 use App\Models\Departamento;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Validation\Rule;
+//use Symfony\Component\Console\Input\Input;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Image;
 
 class MiEmpresa extends Component
 {
@@ -25,7 +30,7 @@ class MiEmpresa extends Component
     public $departamentos, $provincias = [], $distritos = [];
     public $description;
     //public $categoriess;
-    public $logo, $identificador;
+    //public $logo, $identificador;//coemntando porqie genera imagenes con nombre aleatorio
 
     public $departamento_id = "", $provincia_id = "", $distrito_id = "";
 
@@ -41,7 +46,7 @@ class MiEmpresa extends Component
 
         $this->razonsocial = $this->empresa->razonsocial;
        // $this->slug = $this->empresa->slug;
-
+        //$this->logo = $this->empresa->logo;
         $this->facebook = $this->empresa->facebook;
         $this->youtube = $this->empresa->youtube;
         $this->twitter = $this->empresa->twitter;
@@ -76,7 +81,7 @@ class MiEmpresa extends Component
         'razonsocial'=> 'required',
        // 'slug'=> 'required',
         'ruc'=> 'min:8',
-        'logo' => 'image'
+        //'logo' => 'image'
         //'description'=>'required|min:1',
     ];
 
@@ -104,30 +109,46 @@ class MiEmpresa extends Component
         $this->slug = Str::slug($value);
     }
 
-    public function save(){
+    public function save(Request $request){
 
+        //dd(Input::file('logo'));
          /* $this->rules['category.slug'] = 'required|unique:categories,slug,'.$this->category->id;  */
+         //dd(storage_path().'\app\public/'.$request->user()->logo);
 
           $rules = $this->rules;
 
-         if($this->logo){
-            // dd($this->image);
+
+
+  /*        if($this->logo){
              $rules['logo'] ='required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
              $this->validate($rules);
-             //Storage::delete([$this->product->image1]);
-             //$this->product->image1 = Storage::url($this->image1->store('products', 'public'));
-             //$image11 = $this->product->image1;
-
 
              if($this->empresa->logo){
                  Storage::disk('s3')->delete([$this->empresa->logo]);
-             }
-             $logo1 = Storage::disk('s3')->put('home', $this->logo , 'public');
+             } */
+
+             /* $empresa = Auth::user()->razonsocial;
+             $aleatorio = Str::random(3);
+             $nombre = Str::slug($empresa." ".$aleatorio).".jpg";
+             $ruta = storage_path().'\app\public\home/'. $nombre; */
+             //dd($ruta);
+
+            /*  $marcadeagua = Image::make($request->user()->logo)
+                    ->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+             })->save($ruta);
+
+             $resource = $marcadeagua->stream()->detach();
+             Storage::disk('s3')->put('home/'. $nombre, $resource,'public');
+             $logo1 = 'home/'.$nombre; */
+
+
+/*              $logo1 = Storage::disk('s3')->put('home', $this->logo , 'public');
          }else{
             // dd($this->image);
             $logo1 = $this->empresa->logo;//no hay cambios en el logo
              $this->validate($rules);
-         }
+         } */
 
 
         /*  $rules['razonsocial'] = 'required|unique:users,razonsocial,'.$this->empresa->id; */
@@ -143,7 +164,8 @@ class MiEmpresa extends Component
        // dd($this->categoriess);
 
         $this->empresa->update([
-            'logo' => $logo1,
+            //'logo' => $logo1,
+            //'logo'=>'home/'.$nombre,
             'razonsocial' => $this->razonsocial,
            // 'slug' => $this->slug,
             //'description' => $this->description,

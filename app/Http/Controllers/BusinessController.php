@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 
 class BusinessController extends Controller
@@ -10,6 +11,8 @@ class BusinessController extends Controller
 
         return view('business.list');
     }
+
+
 
 
 }

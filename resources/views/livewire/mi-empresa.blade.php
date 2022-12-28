@@ -6,26 +6,29 @@
 
 
 
-                    <div class="mt-4 mb-4 ml-4">
+
+{{-- comentando esta parte porque genera magen con nombres aleatorios  --}}
+
+{{--                      <div class="mt-4 mb-4 ml-4">
                         <x-jet-label value="Logo de tu Empresa" />
-                        <input type="file" wire:model="logo" id="{{ $identificador }}">
+                        <input type="file" name="logo" wire:model="logo" id="{{ $identificador }}">
                         <x-jet-input-error for="logo" />
                     </div>
 
 
-                    <div wire:loading wire:target="logo"
+                   <div wire:loading wire:target="logo"
                         class="relative px-4 py-3 text-red-700 bg-red-100 border border-red-400 rounded" role="alert">
                         <strong class="font-bold">Cargando imagen!</strong>
                         <span class="block sm:inline">Espere un momento.</span>
 
                     </div>
 
-                    @if ($logo)
+                     @if ($logo)
                         <img class="w-40 mb-4 ml-4" src="{{ $logo->temporaryUrl() }}" alt="{{ $empresa->razonsocial }}">
                     @elseif($empresa->logo)
 
                         <img class="w-40 mb-4 ml-4" src="{{ Storage::disk("s3")->url($empresa->logo) }}" alt="{{ $empresa->razonsocial }}">
-                    @endif
+                    @endif --}}
 
 
 
@@ -294,7 +297,7 @@
 
                                 <select class="w-full form-control" wire:model="departamento_id">
 
-                                    <option value="" disabled selected>Seleccione un Departamento</option>
+                                    <option value="" selected>Seleccione un Departamento</option>
 
                                     @foreach ($departamentos as $department)
                                         <option value="{{$department->id}}">{{$department->name}}</option>
@@ -374,10 +377,44 @@
 
         </script> --}}
 
-    @push('scripts')
 
-        <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+
+
+    @push('css')
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css"
+    integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
     @endpush
+
+    @push('scripts')
+        <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"
+        integrity="sha512-oQq8uth41D+gIH/NJvSJvVB85MFk1eWpMK6glnkg6I7EdMqC1XVkW7RxLheXwmFdG03qScCM7gKS/Cx3FYt7Tg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+        <script>
+
+            Dropzone.options.myAwesomeDropzone = {
+                headers:{
+                    'X-CSRF-TOKEN' : "{{csrf_token()}}"
+                },
+                //paramName: "file",
+                maxFilesize: 2,
+                dictDefaultMessage: "Click aqui para subir el Logo de tu Empresa o arrastre tu Logo aquí",
+                acceptedFiles:"image/*",
+
+            };
+        </script>
+    @endpush
+
+
+
 
 
 </div>

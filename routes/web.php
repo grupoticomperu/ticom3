@@ -14,6 +14,7 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\SliderclienteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -83,6 +84,11 @@ function(){
     /*Route::post('products/{product}/photos', 'PhotoController@store')->name('products.photos.store'); */
     Route::post('products/{product}/photos', [PhotoController::class, 'store'])->name('products.photos.store');
     Route::delete('products/{photo}', [PhotoController::class, 'destroy'])->name('products.photos.destroy');
+    Route::get('milogo/{empresa}', [PhotoController::class, 'edit'])->name('miempresa.logo.edit');
+    Route::put('milogo/{empresa}', [PhotoController::class, 'update'])->name('miempresa.logo.update');
+
+    Route::resource('sliderclientes', SliderclienteController::class);
+
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
