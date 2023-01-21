@@ -14,6 +14,10 @@
     @apply bg-blue-700;
 }
 
+.btn-green{
+    @apply text-white bg-green-500;
+}
+
 .btn-danger{
     @apply text-white bg-red-500;
 }

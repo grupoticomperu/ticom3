@@ -19,6 +19,7 @@
             </x-jet-button>
         </aside>
 
+
         <div class="md:col-span-2 lg:col-span-4">
             @if ($view == 'grid')
 
@@ -27,7 +28,24 @@
                         <li class="bg-white rounded-lg shadow">
 
                             <article class="card">
-                                <img class="object-cover w-full h-36" src="{{asset('img/home/1.jpg')}}" alt="Portal de Empresas">
+                               {{--  <img class="object-cover w-full h-36" src="{{asset('img/home/1.jpg')}}" alt="Portal de Empresas">
+                                <img class="object-cover w-full h-36" src="{{ Storage::disk("s3")->url($busines->logo) }}" alt="{{ $busines->razonsocial }}"> --}}
+
+                                @if ($busines->logo)
+                                    <figure>
+                                        <a href="{{ route('showempresa', $busines )}}">
+                                            <img class="object-center w-full rounded-t-xl h-36" src="{{ Storage::disk("s3")->url($busines->logo) }}" alt="{{ $busines->razonsocial }}">
+                                        </a>
+                                    </figure>
+                                @else
+                                    <figure>
+                                        <a href="{{ route('showempresa', $busines )}}"><img class="object-cover w-full rounded-t-xl h-36" src="{{asset('img/home/empresaperu.jpg')}}" alt="{{ $busines->razonsocial }}"></a>
+                                    </figure>
+                                @endif
+
+
+
+
                                 <div class="card-body">
                                     <p class="mb-3 text-xs text-gray-900">{{ Str::limit($busines->razonsocial, 22)}}</p>
 

@@ -6,10 +6,13 @@ use App\Models\Product;
 use Livewire\Component;
 use App\Models\Solicitud;
 
+
 class Contactar extends Component
 {
 
     public $name, $email, $movil, $description, $date, $product_id, $user_id;
+
+
 
 
     public function mount(Product $product){
@@ -24,8 +27,11 @@ class Contactar extends Component
         'email'=> 'required|email',
         'movil'=>'required|min:7',
         'description'=>'required|min:3',
+        /* 'g-recaptcha-response'=> 'required|captcha', */
         //'date'=> 'required',
     ];
+
+
 
 
 
@@ -39,6 +45,7 @@ class Contactar extends Component
             'state' => true,
             'user_id' => $this->user_id,
             'product_id' => $this->product_id,
+
         ]);
 
         $this->reset(['name','email','movil', 'description']);

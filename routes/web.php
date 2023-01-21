@@ -26,6 +26,11 @@ use App\Http\Controllers\SliderclienteController;
 |
 */
 
+
+
+
+
+
 Route::get('/', HomeController::class)->name('home');
 //HomeController no necesita poner un metodo porque tiene al unico metodo llamado __invoque
 

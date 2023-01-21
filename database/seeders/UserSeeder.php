@@ -28,6 +28,7 @@ class UserSeeder extends Seeder
             'slug' => Str::slug('TICOM'),
             'phone'=>'2662584',
             'movil'=>'996929470',
+            'email_verified_at' => now(),
             'address'=>'Av. Peru 345',
         ])->assignRole('admin');;
 

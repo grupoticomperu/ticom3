@@ -32,9 +32,14 @@
             {{-- <a href="">Email: aa@aaa.com</a>
             <a href="">Telf: 2665470</a>
             <a href="">wathsapp: 996958745</a> --}}
-            <a href="#" class="px-2 lg:px-0">
-                <img src="/img/logoempresas.jpg" alt="logo" class="h-30 w-60" />
-            </a>
+            @if($busine->logo)
+                <a href="#" class="px-2 lg:px-0">
+                    <img src="{{ Storage::disk("s3")->url($busine->logo) }}" alt="{{ $busine->razonsocial }}" class="h-30 w-60" />
+                </a>
+            @else
+                <h1>{{ $busine->razonsocial }}</h1>
+            @endif
+
          {{--    <a href="">Facebook</a>
             <a href="">Youtube</a>
             <a href="">Twiteer</a> --}}

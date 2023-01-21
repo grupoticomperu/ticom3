@@ -17,7 +17,7 @@ class ListaEmpresas extends Component
 
         //$business = User::all();
         //$business = User::all();
-        $business = User::where('state', 1)->paginate(2);
+        $business = User::where('state', 1)->paginate(20);
 
         return view('livewire.lista-empresas', compact('business'));
     }

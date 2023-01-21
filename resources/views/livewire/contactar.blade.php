@@ -43,6 +43,11 @@
             </div>
         </div>
 
+        {{--    <div class="mt-1 ml-3 mb1">
+            {!! NoCaptcha::renderJs() !!}
+            {!! NoCaptcha::display() !!}
+        </div> --}}
+
         <div class="flex-1 mx-2 mb-2">
             <x-jet-danger-button class="w-full mb-2"
             wire:click="save"

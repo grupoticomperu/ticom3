@@ -46,11 +46,13 @@ class SliderclienteController extends Controller
 
             $nombre = Str::slug($rs." ".$aleatorio).".jpg";
 
-            $ruta = storage_path().'\app\public\slider/'. $nombre;
+            //$ruta = storage_path().'\app\public\slider/'. $nombre;
+            //no se necesita la ruta storage porque en el hosting nio funciona el storagelink
+            $ruta = 'storage/slider/'. $nombre;
 
             $slider = Image::make($request->file('image'));
 
-            $slider->resize(400, null, function ($constraint) {
+            $slider->resize(1500, null, function ($constraint) {
                         $constraint->aspectRatio();
                     })->save($ruta);
 
@@ -109,11 +111,12 @@ class SliderclienteController extends Controller
 
             $nombre = Str::slug($rs." ".$aleatorio).".jpg";
 
-            $ruta = storage_path().'\app\public\slider/'. $nombre;
+           // $ruta = storage_path().'\app\public\slider/'. $nombre;
+           $ruta = 'storage/slider/'. $nombre;
 
             $slider = Image::make($request->file('image'));
 
-            $slider->resize(400, null, function ($constraint) {
+            $slider->resize(1500, null, function ($constraint) {
                         $constraint->aspectRatio();
                     })->save($ruta);
 

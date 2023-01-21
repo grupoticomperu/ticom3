@@ -35,7 +35,7 @@
 
 
 
-                    <div class="grid px-4 py-1 mb-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-1">
+                    <div class="grid px-4 py-4 mb-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-1">
 
                         <div class="px-4">
                             <x-jet-label value="Razón Social" />

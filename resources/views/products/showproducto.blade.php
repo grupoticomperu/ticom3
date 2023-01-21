@@ -40,15 +40,15 @@
 
                                     <li data-thumb=" {{ Storage::disk("s3")->url($image->url) }}">
                                         {{-- <img src=" {{ Storage::url($image->url) }}" /> --}}
-                                        <img src=" {{ Storage::disk("s3")->url($image->url) }}" />
+                                        <img src=" {{ Storage::disk("s3")->url($image->url) }}" alt="{{$product->name}}" />
                                     </li>
 
                                 @endforeach
                             @else
-                                <li data-thumb="{{asset('img/home/1.jpg')}}">
+                                <li data-thumb="{{asset('img/home/producto-peruano.jpg')}}">
                                     {{-- <img src=" {{ Storage::url($image->url) }}" /> --}}
 
-                                    <img class="object-cover w-full h-36" src="{{asset('img/home/1.jpg')}}"  alt="">
+                                    <img class="object-cover w-full h-36" src="{{asset('img/home/producto-peruano.jpg')}}"  alt="{{$product->name}}" />
                                 </li>
                             @endif
 
@@ -173,22 +173,22 @@
                                 <a class="my-2 ml-2 " href="https://www.facebook.com/sharer.php?u={{ request()->fullUrl() }} & title={{ $product->name }}"
                                     title="Compartir Facebook"
                                     target="_blank">
-                                    <img alt="Compartir este Producto en Facebook" src="/img/Facebook.png">
+                                    <img alt="Compartir este Producto en Facebook" src="/img/facebook.jpg">
                                 </a>
 
 
                                 <a class="my-2 ml-2 " href="https://twitter.com/intent/tweet?url={{ request()->fullUrl() }}&text={{  $product->name  }}&via=TICOMPERU&hashtags=TICOM" target="_blank" title="Tweet">
-                                    <img alt="Tweet" src="/img/Twitter.png">
+                                    <img alt="Tweet" src="/img/Twitter.jpg">
                                 </a>
 
 
                                 <a class="my-2 ml-2 " href="https://plus.google.com/share?url={{ request()->fullUrl() }}" target="_blank" title="Compartir en Google+">
-                                    <img alt="Share on Google+" src="/img/Google+.png">
+                                    <img alt="Share on Google+" src="/img/Google+.jpg">
                                 </a>
 
 
                                 <a class="my-2 ml-2 " href="http://pinterest.com/pin/create/button/?url={{ request()->fullUrl() }}&description={{  $product->name  }}" target="_blank" title="Pin it">
-                                    <img alt="Pin it" src="/img/Pinterest.png">
+                                    <img alt="Pin it" src="/img/Pinterest.jpg">
                                 </a>
 
                             </div>
@@ -314,27 +314,35 @@
                 </div>
         </div>
 
-
-
+            @if($cant)
             <p class="my-2 ml-3 text-xl text-neutral-600">Productos Relacionados</p>
+            @endif
+
+
             <div class="grid px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
 
                 @foreach ( $productrelacionado->take($cant) as $producto)
                     <article class="card">
+
                         @if($producto->photos->count() )
                             @foreach ( $producto->photos->take(1) as $photo)
-                            <img class="object-cover w-full h-36" src="{{ Storage::disk("s3")->url($photo->url) }}" alt="">
+                                <a href="{{ route('verproducto', $producto )}}">
+                                    <img class="object-cover w-full h-36" src="{{ Storage::disk("s3")->url($photo->url) }}" alt="{{ $producto->name }}">
+                                </a>
                             @endforeach
                         @else
-                            <img class="object-cover w-full h-36" src="{{asset('img/home/1.jpg')}}"  alt="">
+                            <a href="{{ route('verproducto', $producto )}}">
+                                <img class="object-cover w-full h-36" src="{{asset('img/home/producto-peruano.jpg')}}"  alt="{{ $producto->name }}"">
+                            </a>
                         @endif
 
 
-                        <div class="card-body">
-                            <h1 class="card-title">{{ Str::limit($producto->name, 40)}}</h1>
-                            <p class="mb-2 text-sm text-gray-500">Profe: {{$producto->name}}</p>
-                            <div class="flex">
-                                <ul class="flex text-sm">
+                    <div class="card-body">
+                        <h1 class="capitalize card-title"><a href="{{ route('verproducto', $producto )}}"> {{ Str::limit($producto->name, 40)}} </a></h1>
+
+                        <div class="flex flex-col">
+
+                                <ul class="flex mb-2 text-sm">
                                     <li class="mr-1"><i class="text-yellow-400 fas fa-star"></i></li>
                                     <li class="mr-1"><i class="text-yellow-400 fas fa-star"></i></li>
                                     <li class="mr-1"><i class="text-yellow-400 fas fa-star"></i></li>
@@ -342,18 +350,20 @@
                                     <li class="mr-1"><i class="text-yellow-400 fas fa-star"></i></li>
 
                                 </ul>
-                                <p class="ml-auto text-sm text-gray-500">
-                                    <i class="fas fa-users"></i>
-                                    ({{$producto->name}})
-                                </p>
-                            </div>
 
-                            <a href="{{ route('verproducto', $producto )}}" class="right-0 mt-2 btn btn-primary btn-block">
-                                Mostrar Detalle
-                            </a>
-
-
+                            <p class="text-sm text-gray-500 ">
+                                <i class="fa-sharp fa-solid fa-building"></i>
+                                <a href="{{ route('showempresa', $producto->user )}}"> {{$producto->user->razonsocial}} </a>
+                            </p>
                         </div>
+
+                        <a href="{{ route('verproducto', $producto )}}" class="right-0 mt-2 btn btn-primary btn-block">
+                            Mostrar Detalle
+                        </a>
+
+
+                    </div>
+
                     </article>
                 @endforeach
 

@@ -119,14 +119,14 @@
 
                 <article class="card">
                     @if ($bussines->logo)
-                        <figure>
+                        <figure >
                             <a href="{{ route('showempresa', $bussines )}}">
-                                <img class="object-cover w-full rounded-t-xl h-36" src="{{ Storage::disk("s3")->url($bussines->logo) }}" alt="{{ $bussines->razonsocial }}">
+                                <img class="object-center h-36 rounded-t-xl" src="{{ Storage::disk("s3")->url($bussines->logo) }}" alt="{{ $bussines->razonsocial }}">
                             </a>
                         </figure>
                     @else
                         <figure>
-                            <a href="{{ route('showempresa', $bussines )}}"><img class="object-cover w-full rounded-t-xl h-36" src="{{asset('img/home/1.jpg')}}" alt="{{ $bussines->razonsocial }}"></a>
+                            <a href="{{ route('showempresa', $bussines )}}"><img class="object-cover w-full h-36 rounded-t-xl" src="{{asset('img/home/empresaperu.jpg')}}" alt="{{ $bussines->razonsocial }}"></a>
                         </figure>
                     @endif
 

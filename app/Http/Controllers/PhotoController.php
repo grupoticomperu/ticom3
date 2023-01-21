@@ -39,31 +39,39 @@ class PhotoController extends Controller
         if($empresa->logo){
             Storage::disk('s3')->delete([$empresa->logo]);
         }
+        //codigo que dunciona en local
+
 
         $rs = Auth::user()->razonsocial;
         $aleatorio = Str::random(1);
 
         $nombre = Str::slug($rs." ".$aleatorio).".jpg";
 
-        $ruta = storage_path().'\app\public\home/'. $nombre;
+        $ruta = 'storage/home/'. $nombre;
 
         $marcadeagua = Image::make($request->file('file'));
 
         $marcadeagua->resize(400, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($ruta);
+        //codigo que dunciona en local
 
+        //para poner marca de agua
         /* $logo = storage_path().'\app\public\products/'. 'logo.png';
         $marcadeagua->insert($logo, 'bottom-right',5,5);
         $marcadeagua->save($ruta); */
+        //para poner marca de agua
 
         $resource = $marcadeagua->stream()->detach();
         Storage::disk('s3')->put('home/'. $nombre, $resource,'public');
 
 
 
+       // $logo = Storage::disk('s3')->put('home', $request->file('file') , 'public');
+
         $empresa->update([
             'logo' => 'home/'.$nombre
+            //'logo' => $logo
         ]);
 
 
@@ -87,32 +95,41 @@ class PhotoController extends Controller
     {
 
     	$this->validate(request(), [
-    		'file' => 'required|image|max:2048'
+    		'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
     	]);
 
-        /* $ruta2 = Storage::disk('s3')->put('hostingperu/sliders', $marcadeagua->__toString(), 'public');*/
-        //Storage::disk('s3')->put('hostingperu/sliders', $request->file('file'), 'public');
+
+        // $url = Storage::disk('s3')->put('productos', $request->file('file') , 'public');
+         //dd($url);
         //return "imagen cargada";
         //$nombre = $request->file('file')->getClientOriginalName();
+
+
+
+       //codigo usando laravel intervention
         $empresa = Auth::user()->razonsocial;
         $aleatorio = Str::random(3);
         $nombre = Str::slug($product->name." ".$empresa." ".$aleatorio).".jpg";
-        $ruta = storage_path().'\app\public\products/'. $nombre;
+       // $ruta = storage_path().'\app\public\products/'. $nombre;
+        $ruta = 'storage/products/' . $nombre;;
+        //codigo usando laravel intervention
 
         //$url = Storage::put('public/sliders', $request->file('image'));
         $marcadeagua = Image::make($request->file('file'));//lo guarda en la variable marca de agua
         $marcadeagua->resize(600, 400, function ($constraint) {//redimenciona la imagen
                     $constraint->aspectRatio();
                 });
-        $logo = storage_path().'\app\public\products/'. 'logo.png';//ubicamos el logo
+        //$logo = storage_path().'\app\public\products/'. 'logo.png';//ubicamos el logo
+        $logo = 'storage/products/'. 'logo.png';//ubicamos el logo
         $marcadeagua->insert($logo, 'bottom-right',5,5);//ponemos la marca de agua
         $marcadeagua->save($ruta);//gravamos la imagen en la ruta
 
         $resource = $marcadeagua->stream()->detach();
-
-        //Storage::disk('s3')->put('hostingperu/sliders', $request->file('file'), 'public');
-        //$ruta2 = Storage::disk('s3')->put('hostingperu/sliders', $marcadeagua->__toString(), 'public');
         Storage::disk('s3')->put('productos/'. $nombre, $resource,'public');
+
+
+
+
 
 
     	////$photo = $request->file('file')->store('public/products');
@@ -140,6 +157,7 @@ class PhotoController extends Controller
     	Photo::create([
     	   	//'url' => Storage::url($nombre),
             'url'=>'productos/'.$nombre,
+            ///'url'=>$url,
             //    'url' =>request()->file('photo')->store('public'),
             //    'url' => request()->file('photo')->store('posts','public');
     		'product_id' => $product->id
@@ -151,16 +169,18 @@ class PhotoController extends Controller
 
       public function destroy(Photo $photo)
       {
+         $var= Storage::disk('s3')->delete($photo->url);
+         //dd($var);
           $photo->delete();
 
           /*Storage::disk('public')->delete($photo->url);*/
 
-          $photoPath = str_replace('storage','public',$photo->url);
+          //$photoPath = str_replace('storage','public',$photo->url);
           //para eliminar cambiamos storage por public ya qye la imagen esta almacenada en
           //la carpeta public y no en la ca´peta storage
-          Storage::delete($photoPath);
+          //Storage::delete($photoPath);
 
-          //return back()->with('flash','Foto Eliminada');
+          return back()->with('flash','Imagen Eliminado');
 
       }
 

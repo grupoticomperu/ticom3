@@ -12,9 +12,9 @@
     <section class="bg-cover" style="background-image:url({{asset('img/banerticom.jpg')}})">
         <div class="px-4 py-20 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="w-full md:w-3/4 lg:w-1/2">
-                <h1 class="text-4xl text-white font-fold">Busca tu Producto</h1>
-                <p class="mt-2 mb-4 text-lg text-white">Si deseas comprar encontrarás las empresas más solidas.</p>
-                <p class="mt-2 mb-4 text-lg text-white">Si deseas vender registrate</p>
+                <h1 class="text-4xl text-white font-fold">Busca un Producto</h1>
+                <p class="mt-2 mb-4 text-lg text-white">Encuentra el producto que deseas Comprar.</p>
+               {{--  <p class="mt-2 mb-4 text-lg text-white">Si deseas vender registrate</p> --}}
 
                 {{-- <div class="relative pt-2 mx-auto text-gray-600" autocomplete="off">
                     <input class="w-full h-10 px-5 pr-16 text-sm bg-white border-2 border-gray-300 rounded-lg focus:outline-none"
@@ -24,11 +24,10 @@
                         Buscar
                     </button>
                 </div> --}}
-                @livewire('search')
+                @livewire('search-producto')
             </div>
         </div>
     </section>
-
 
     <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
 

@@ -140,13 +140,13 @@
 
 
                                                     <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-
-                                                         <a href="{{route('sliderclientes.edit', $slider )}}" class="mr-2 text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                         <form action="{{route('sliderclientes.destroy', $slider )}}" method= "POST" class="formulario-eliminar">
+                                                        <div class="flex">
+                                                         <a href="{{route('sliderclientes.edit', $slider )}}" class="mr-2 text-indigo-600 hover:text-indigo-900 "><i class="fa-solid fa-pen-to-square btn btn-green"></i></a>
+                                                         <form action="{{route('sliderclientes.destroy', $slider )}}" method= "POST" class="formulario-eliminar ">
                                                             {{csrf_field()}} {{ method_field('DELETE') }}
-                                                             <button type="submit">Eliminar</button>
+                                                             <button type="submit"><i class="fa-solid fa-trash-can btn btn-danger"></i></button>
                                                          </form>
-
+                                                        </div>
                                                     </td>
                                                 </tr>
 

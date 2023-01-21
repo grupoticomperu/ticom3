@@ -124,11 +124,18 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Models\Product');
     }
 
+    public function sliderclientes(){
+        return $this->hasMany(Slidercliente::class);
+    }
+
 
     //Relacion muchos a muchos
     public function categories(){
         return $this->belongsToMany(Category::class);
     }
+
+
+
 
 
 }

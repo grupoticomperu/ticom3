@@ -50,7 +50,7 @@
                                         class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
                                         wire:click="order('name')">
 
-                                        Nombre y Apellido
+                                        Nombres
                                         @if ($sort == 'name')
                                             @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
@@ -126,8 +126,8 @@
                                         Fecha
                                     </th>
 
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Editar</span>
+                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer">
+
                                     </th>
                                 </tr>
                             </thead>
@@ -182,6 +182,12 @@
 
                                         <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
                                             {{$solicitud->date }}
+
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                           <a wire:click="show({{ $solicitud }})" class="cursor-pointer btn btn-danger"> <i class="fa-solid fa-pen-to-square"></i> </a>
+
                                         </td>
 
 
@@ -219,6 +225,77 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+    <x-jet-dialog-modal wire:model="open_show">
+        <x-slot name="title">
+        Mostrando el Pedido
+        </x-slot>
+
+        <x-slot name="content">
+
+            <div class="mb-4">
+                <x-jet-label value="Nombres" />
+                <x-jet-input type="text" class="w-full" wire:model="name" />
+                <x-jet-input-error for="name"/>
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Correo" />
+                <x-jet-input type="text" class="w-full" wire:model="email" />
+                <x-jet-input-error for="email"/>
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Celular" />
+                <x-jet-input type="text" class="w-full" wire:model="movil" />
+                <x-jet-input-error for="movil"/>
+            </div>
+
+
+            <div class="mb-4">
+                <x-jet-label value="Descripción del Pedido" />
+                <textarea class="w-full border-gray-300 rounded-md shadow-sm form-control focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                wire:model="description" rows="3"> </textarea>
+             {{--    <x-jet-input type="text" class="w-full" wire:model="description" /> --}}
+                <x-jet-input-error for="description"/>
+            </div>
+
+
+            <div class="mb-4">
+                <x-jet-label value="Producto" />
+                <x-jet-input type="text" class="w-full" wire:model="product" />
+                <x-jet-input-error for="product"/>
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Fecha del pedido" />
+                <x-jet-input type="text" class="w-full" wire:model="date" />
+                <x-jet-input-error for="date"/>
+            </div>
+
+
+
+
+
+
+
+        </x-slot>
+
+        <x-slot name="footer">
+
+            <x-jet-button wire:click="cancelar"  class="mr-2 cursor-pointer" >
+                <i class="mx-2 fa-sharp fa-solid fa-xmark"></i> Regresar </x-jet-secondary-button>
+
+
+
+        </x-slot>
+
+    </x-jet-dialog-modal>
 
 </div>
 

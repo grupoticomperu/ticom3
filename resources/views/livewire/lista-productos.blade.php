@@ -1,7 +1,4 @@
 <div>
-
-
-
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
 
         <aside>
@@ -29,9 +26,26 @@
                         <li class="bg-white rounded-lg shadow">
 
                             <article class="card">
-                                <img class="object-cover w-full h-36" src="{{asset('img/home/1.jpg')}}" alt="">
+
+                                @if($product->photos->count() )
+                                    @foreach ( $product->photos->take(1) as $photo)
+                                        <a href="{{ route('verproducto', $product )}}">
+                                            <img class="object-cover w-full h-36" src="{{ Storage::disk("s3")->url($photo->url) }}" alt="{{ $product->name }}">
+                                        </a>
+                                    @endforeach
+                                @else
+                                    <a href="{{ route('verproducto', $product )}}">
+                                        <img class="object-cover w-full h-36" src="{{asset('img/home/producto-peruano.jpg')}}"  alt="{{ $product->name }}"">
+                                    </a>
+                                @endif
+
+
+
+
+
+
                                 <div class="card-body">
-                                    <h1 class="card-title">{{ Str::limit($product->name, 15)}}</h1>
+                                    <h1 class="card-title"><a href="{{ route('verproducto', $product )}}">{{ Str::limit($product->name, 15)}}</a></h1>
                                     {{-- <p class="mb-2 text-sm text-gray-500">Profe: {{$product->name}}</p> --}}
                                     <div class="flex">
                                         <ul class="flex text-sm">

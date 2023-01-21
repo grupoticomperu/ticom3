@@ -27,14 +27,18 @@
                     <article class="card">
                         @if($producto->photos->count() )
                             @foreach ( $producto->photos->take(1) as $photo)
+                            <div class="flex justify-center">
                                 <a href="{{ route('verproducto', $producto )}}">
-                                    <img class="object-cover w-full h-36" src="{{ Storage::disk("s3")->url($photo->url) }}" alt="{{ $producto->name }}">
+                                    <img class="object-none object-center w-36 h-36" src="{{ Storage::disk("s3")->url($photo->url) }}" alt="{{ $producto->name }}">
                                 </a>
+                            </div>
                             @endforeach
                         @else
-                            <a href="{{ route('verproducto', $producto )}}">
-                                <img class="object-cover w-full h-36" src="{{asset('img/home/1.jpg')}}"  alt="{{ $producto->name }}"">
-                            </a>
+                            <div class="flex justify-center">
+                                <a href="{{ route('verproducto', $producto )}}">
+                                    <img class="object-none object-center w-36 h-36" src="{{asset('img/home/producto-peruano.jpg')}}"  alt="{{ $producto->name }}"">
+                                </a>
+                            </div>
                         @endif
 
 
@@ -90,7 +94,7 @@
                             @endforeach
                         @else
                             <a href="{{ route('verproducto', $product )}}">
-                                <img class="object-cover w-full h-48 md:w-56" src="{{asset('img/home/1.jpg')}}"  alt="{{ $product->name }}"">
+                                <img class="object-cover w-full h-48 md:w-56" src="{{asset('img/home/producto-peruano.jpg')}}"  alt="{{ $product->name }}"">
                             </a>
                         @endif
 

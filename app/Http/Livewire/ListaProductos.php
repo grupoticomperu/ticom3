@@ -17,7 +17,7 @@ class ListaProductos extends Component
     public function render()
     {
         //$products = Product::all();
-        $products = Product::where('state', 1)->paginate(4);
+        $products = Product::where('state', 1)->paginate(20);
         //dd($products);
         return view('livewire.lista-productos', compact('products'));
     }

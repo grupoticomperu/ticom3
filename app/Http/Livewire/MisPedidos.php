@@ -12,7 +12,8 @@ class MisPedidos extends Component
 
 
     use WithPagination;
-    public $product, $state;
+    public $name, $email, $movil, $description, $state, $product, $date;
+    public $open_show = false;
     public $search;
     public $sort='id';
     public $direction='desc';
@@ -28,7 +29,7 @@ class MisPedidos extends Component
 
 
     public function mount(){
-        $this->solicitud = new Solicitud();
+       // $this->solicitud = new Solicitud();
     }
 
 
@@ -74,6 +75,22 @@ class MisPedidos extends Component
 
     }
 
+    public function show(Solicitud $solicitud){
+        $this->open_show = true;
+        $this->name = $solicitud->name;
+        $this->email = $solicitud->email;
+        $this->movil = $solicitud->movil;
+        $this->description = $solicitud->description;
+        $this->product = $solicitud->product->name;
+        $this->date = $solicitud->date;
+
+
+    }
+
+    public function cancelar(){
+        $this->reset('open_show','name', 'email', 'movil', 'description', 'product', 'date');
+
+    }
 
     public function render()
     {
